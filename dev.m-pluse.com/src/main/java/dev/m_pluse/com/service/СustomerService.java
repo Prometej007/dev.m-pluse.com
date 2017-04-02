@@ -3,14 +3,14 @@ package dev.m_pluse.com.service;
 import java.util.List;
 
 import dev.m_pluse.com.entity.Project;
-import dev.m_pluse.com.entity.Ñustomer;
+import dev.m_pluse.com.entity.Customer;
 
 public interface ÑustomerService {
-	void save(Ñustomer customer);
+	void save(Customer customer);
 
-	List<Ñustomer> findAll();
+	List<Customer> findAll();
 
-	Ñustomer findOne(int id);
+	Customer findOne(int id);
 
 	void delete(int id);
 

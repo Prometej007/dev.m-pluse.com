@@ -17,14 +17,14 @@ public class Company {
 	@OneToMany(mappedBy = "company")
 	private List<Project> project;
 	@OneToMany(mappedBy = "company")
-	private List<Ñustomer> customer;
+	private List<Customer> customer;
 	private String street;
 	
 	public Company() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Company(String name, List<Project> project, List<Ñustomer> customer, String street) {
+	public Company(String name, List<Project> project, List<Customer> customer, String street) {
 		super();
 		this.name = name;
 		this.project = project;
@@ -56,11 +56,11 @@ public class Company {
 		this.project = project;
 	}
 
-	public List<Ñustomer> getCustomer() {
+	public List<Customer> getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(List<Ñustomer> customer) {
+	public void setCustomer(List<Customer> customer) {
 		this.customer = customer;
 	}
 

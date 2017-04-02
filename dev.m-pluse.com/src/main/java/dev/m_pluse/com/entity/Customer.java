@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Ñustomer {
+public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -18,11 +18,11 @@ public class Ñustomer {
 	private String position;
 	private String phoneNumber;
 	
-	public Ñustomer() {
+	public Customer() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ñustomer(String lastName, String firstName, Company company, String position, String phoneNumber) {
+	public Customer(String lastName, String firstName, Company company, String position, String phoneNumber) {
 		super();
 		this.lastName = lastName;
 		FirstName = firstName;
