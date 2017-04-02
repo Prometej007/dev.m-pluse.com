@@ -17,21 +17,27 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToMany
-	@JoinTable(name="develiper_task",
+	@JoinTable(name="developer_task",
 	joinColumns= @JoinColumn(name="id_task"),
 	inverseJoinColumns=@JoinColumn(name="id_developer"))
 	private List<Developer> developers;
 	@ManyToOne
 	private Project project;
 	
+	private boolean inProces;
+	
 	public Task() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
 
 	public Task(Project project) {
 		super();
 		this.project = project;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -55,6 +61,14 @@ public class Task {
 
 	public void setProject(Project project) {
 		this.project = project;
+	}
+
+	public boolean isInProces() {
+		return inProces;
+	}
+
+	public void setInProces(boolean inProces) {
+		this.inProces = inProces;
 	}
 
 	

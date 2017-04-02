@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Developer {
@@ -27,10 +28,13 @@ public class Developer {
 	private Department department;
 	private Position position;
 	@ManyToMany
-	@JoinTable(name="develiper_task",
+	@JoinTable(name="developer_task",
 	joinColumns= @JoinColumn(name="id_developer"),
 	inverseJoinColumns=@JoinColumn(name="id_task"))
 	private List<Task> task;
+	
+	@OneToMany
+	private List<Session> sessions;
 	
 	public Developer() {
 		// TODO Auto-generated constructor stub
@@ -128,6 +132,15 @@ public class Developer {
 	public void setTask(List<Task> task) {
 		this.task = task;
 	}
+
+	public List<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
+	}
+
 	
 	
 
