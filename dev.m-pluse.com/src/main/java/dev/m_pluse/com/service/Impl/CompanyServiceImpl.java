@@ -3,11 +3,12 @@ package dev.m_pluse.com.service.Impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dev.m_pluse.com.dao.CompanyDao;
 import dev.m_pluse.com.entity.Company;
 import dev.m_pluse.com.service.CompanyService;
-
+@Service
 public class CompanyServiceImpl implements CompanyService {
 
 	@Autowired
