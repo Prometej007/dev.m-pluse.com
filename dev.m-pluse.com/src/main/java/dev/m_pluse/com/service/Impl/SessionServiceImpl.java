@@ -6,9 +6,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import dev.m_pluse.com.dao.ResourceDao;
 import dev.m_pluse.com.dao.SessionDao;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
+import dev.m_pluse.com.entity.Resource;
+import dev.m_pluse.com.entity.ResourceType;
 import dev.m_pluse.com.entity.Session;
 import dev.m_pluse.com.service.SessionService;
 
@@ -16,6 +19,8 @@ public class SessionServiceImpl implements SessionService {
 
 	@Autowired
 	private SessionDao sessionDao;
+	@Autowired
+	private ResourceDao resourceDao;
 
 	public void save(Session session) {
 		sessionDao.save(session);
@@ -248,9 +253,13 @@ public class SessionServiceImpl implements SessionService {
 		}
 		if (saveSession != null && !path.equals("")) {
 			saveSession.setFinishSession(LocalDateTime.now());
-			saveSession.setPathReport(path);
+			Resource resource = new Resource(
+					"report Y: [ " + LocalDateTime.now().getYear() + " ] M: [ " + LocalDateTime.now().getMonth()
+							+ " ] D: [ " + LocalDateTime.now().getDayOfMonth() + " ] ",
+					ResourceType.SESSION_REPORT, null, path);
+			saveSession.setResource(resource);
 			save(saveSession);
-			;
+			resourceDao.save(resource);
 		}
 
 	}
