@@ -16,4 +16,57 @@ public class Resource {
 	@ManyToOne
 	private Project project;
 	private String path;
+	
+	public Resource() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Resource(String name, ResourceType type, Project project, String path) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.project = project;
+		this.path = path;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public ResourceType getType() {
+		return type;
+	}
+
+	public void setType(ResourceType type) {
+		this.type = type;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+	
 }

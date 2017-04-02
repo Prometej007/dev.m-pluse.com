@@ -19,5 +19,59 @@ public class Company {
 	@OneToMany(mappedBy = "company")
 	private List<Ñustomer> customer;
 	private String street;
+	
+	public Company() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Company(String name, List<Project> project, List<Ñustomer> customer, String street) {
+		super();
+		this.name = name;
+		this.project = project;
+		this.customer = customer;
+		this.street = street;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Project> getProject() {
+		return project;
+	}
+
+	public void setProject(List<Project> project) {
+		this.project = project;
+	}
+
+	public List<Ñustomer> getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(List<Ñustomer> customer) {
+		this.customer = customer;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	
+	
 
 }

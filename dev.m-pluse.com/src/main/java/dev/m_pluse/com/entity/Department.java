@@ -18,4 +18,49 @@ public class Department {
 	private List<Developer> develoupers;
 	@OneToMany(mappedBy = "department")
 	private List<Project> projects;
+	
+	public Department() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Department(String name) {
+		super();
+		this.name = name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Developer> getDeveloupers() {
+		return develoupers;
+	}
+
+	public void setDeveloupers(List<Developer> develoupers) {
+		this.develoupers = develoupers;
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+	
+	
+	
+	
 }
