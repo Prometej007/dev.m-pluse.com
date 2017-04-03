@@ -25,7 +25,6 @@ public interface DeveloperService {
 	public void registrationDeveloper(int id, String login, String password, LocalDate dateOfBirth, String firstName,
 			String lastName);
 
-	// or
 	public void updatePrositionDeveloper(Developer developer, Position position);
 
 }

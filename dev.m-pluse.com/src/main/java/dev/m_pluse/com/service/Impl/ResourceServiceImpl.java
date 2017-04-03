@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import dev.m_pluse.com.dao.ResourceDao;
 import dev.m_pluse.com.entity.Project;
@@ -96,6 +97,30 @@ public class ResourceServiceImpl implements ResourceService {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public List<Resource> selectAllResourceImg() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addFileResource(MultipartFile file, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addFileResource(MultipartFile file, String name, Project project) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Resource> searchFileByResourceType(ResourceType resourceType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

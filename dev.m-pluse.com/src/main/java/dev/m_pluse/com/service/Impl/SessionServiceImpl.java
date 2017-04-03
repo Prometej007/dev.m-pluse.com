@@ -286,4 +286,10 @@ public class SessionServiceImpl implements SessionService {
 		return list;
 	}
 
+
+	public int sessionOfficeHours(Developer developer, int month) {
+		
+		return 0;
+	}
+
 }

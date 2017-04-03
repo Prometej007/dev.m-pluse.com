@@ -103,4 +103,12 @@ public class DeveloperServiceImpl implements DeveloperService {
 		save(developer);
 	}
 
+
+	public void updatePrositionDeveloper(Developer developer, Position position) {
+		
+		developer.setPosition(position);
+		save(developer);
+		
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import dev.m_pluse.com.dao.TechnicalSpecificationDao;
+import dev.m_pluse.com.entity.Project;
 import dev.m_pluse.com.entity.TechnicalSpecification;
 import dev.m_pluse.com.service.TechnicalSpecificationService;
 
@@ -30,6 +31,18 @@ public class TechnicalSpecificationServiceImpl implements TechnicalSpecification
 	public void delete(int id) {
 		technicalSpecificationDao.delete(id);
 
+	}
+
+	@Override
+	public TechnicalSpecification createTechnicalSpecification(Project project) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TechnicalSpecification> selectTechnicalSpecificationFromProject(Project project) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
