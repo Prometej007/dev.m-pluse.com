@@ -15,7 +15,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import dev.m_pluse.com.constants.Ñonfiguration;
+import dev.m_pluse.com.constants.Configuration;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.service.MailSenderService;
 
@@ -45,14 +45,14 @@ public class MailSenderServiceImpl implements MailSenderService {
 		properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		Session session = Session.getDefaultInstance(properties, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(Ñonfiguration.SITE_EMAIL_LOGIN, Ñonfiguration.SITE_EMAIL_PASSWORD);
+				return new PasswordAuthentication(Configuration.SITE_EMAIL_LOGIN, Configuration.SITE_EMAIL_PASSWORD);
 			}
 		});
 		try {
 			MimeMessage message = new MimeMessage(session);
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-			helper.setFrom(new InternetAddress(Ñonfiguration.SITE_EMAIL_LOGIN));
+			helper.setFrom(new InternetAddress(Configuration.SITE_EMAIL_LOGIN));
 
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			helper.setSubject(theme);
@@ -70,7 +70,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 	public void inviteDeveloper(Developer developer) {
 
 		String mailBody = "";
-		sendMail("invite Developer" + Ñonfiguration.SITE_NAME, mailBody, developer.getEmail());
+		sendMail("invite Developer" + Configuration.NAME_PROJECT, mailBody, developer.getEmail());
 	}
 
 }

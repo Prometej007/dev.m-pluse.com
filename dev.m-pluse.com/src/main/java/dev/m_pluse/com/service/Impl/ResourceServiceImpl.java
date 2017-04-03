@@ -107,7 +107,8 @@ public class ResourceServiceImpl implements ResourceService {
 
 	@Override
 	public void addFileResource(MultipartFile file, String name) {
-		// TODO Auto-generated method stub
+		
+		
 		
 	}
 
