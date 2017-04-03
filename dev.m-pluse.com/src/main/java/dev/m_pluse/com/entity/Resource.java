@@ -28,6 +28,13 @@ public class Resource {
 		this.project = project;
 		this.path = path;
 	}
+	
+	public Resource(String name, ResourceType type, String path) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.path = path;
+	}
 
 	public int getId() {
 		return id;
