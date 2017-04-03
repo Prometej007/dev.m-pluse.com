@@ -13,13 +13,17 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import dev.m_pluse.com.constants.Configuration;
 import dev.m_pluse.com.entity.Developer;
+import dev.m_pluse.com.entity.Uuid;
 import dev.m_pluse.com.service.MailSenderService;
+import dev.m_pluse.com.service.UuidService;
+import dev.m_pluse.resource.wrapper.StringModification;
 
 /**
  * @author prometej
@@ -28,6 +32,9 @@ import dev.m_pluse.com.service.MailSenderService;
 
 @Service
 public class MailSenderServiceImpl implements MailSenderService {
+
+	@Autowired
+	private UuidService uuidService;
 
 	/**
 	 * mailsender what more do u want to know? MimeMessageHelper - html page in
@@ -65,14 +72,34 @@ public class MailSenderServiceImpl implements MailSenderService {
 		}
 	}
 
-	@Override
+	/**
+	 * @param Developer
+	 *            developer
+	 */
 	public void inviteDeveloper(Developer developer) {
 
 		try {
-			String mailBody = "<a href=" + InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
-					+ Configuration.NAME_PROJECT + "/invite" + "PATHVARIBLE" + "></a>";
+			Uuid uuid = uuidService.createUuid(developer);
+			String mailBody = "<a href='" + new StringModification().overrideString(InetAddress.getLocalHost() + ":"
+					+ Configuration.PORT + "/" + Configuration.NAME_PROJECT + "/invite" + uuid.getUuid()) + "'></a>";
+
 			sendMail("invite Developer" + Configuration.NAME_PROJECT, mailBody, developer.getEmail());
 
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void changePassword(Developer developer) {
+		String theme = "";
+		String mailBody = "";
+		try {
+			Uuid uuid = uuidService.createUuid(developer);
+			mailBody = "<a href='" + new StringModification().overrideString(InetAddress.getLocalHost() + ":"
+					+ Configuration.PORT + "/" + Configuration.NAME_PROJECT + "/changePassword" + uuid.getUuid())
+					+ "'></a>";
+			sendMail(theme, mailBody, developer.getEmail());
 		} catch (UnknownHostException e) {
 
 			e.printStackTrace();
