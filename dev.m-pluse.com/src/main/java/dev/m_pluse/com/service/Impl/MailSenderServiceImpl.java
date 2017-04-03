@@ -65,7 +65,10 @@ public class MailSenderServiceImpl implements MailSenderService {
 		}
 	}
 
-	@Override
+	/**
+	 * @param Developer
+	 *            developer
+	 */
 	public void inviteDeveloper(Developer developer) {
 
 		try {
@@ -73,6 +76,19 @@ public class MailSenderServiceImpl implements MailSenderService {
 					+ Configuration.NAME_PROJECT + "/invite" + "PATHVARIBLE" + "></a>";
 			sendMail("invite Developer" + Configuration.NAME_PROJECT, mailBody, developer.getEmail());
 
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void changePassword(Developer developer) {
+		String theme = "";
+		String mailBody;
+		try {
+			mailBody = "<a href=" + InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
+					+ Configuration.NAME_PROJECT + "/changePassword" + "PATHVARIBLE" + "></a>";
+			sendMail(theme, mailBody, developer.getEmail());
 		} catch (UnknownHostException e) {
 
 			e.printStackTrace();
