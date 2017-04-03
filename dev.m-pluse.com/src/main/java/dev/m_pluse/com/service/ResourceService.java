@@ -28,11 +28,10 @@ public interface ResourceService {
 	// or
 	public List<Resource> selectAllResourceImg();
 
-	// or
-	public void addFileResource(MultipartFile file, String name);
-
-	// or
-	public void addFileResource(MultipartFile file, String name, Project project);
+	
+	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type);
+	
+	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type,Project project);
 
 	// or
 	public List<Resource> searchFileByResourceType(ResourceType resourceType);

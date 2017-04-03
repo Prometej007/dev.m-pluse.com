@@ -13,18 +13,27 @@ public class TechnicalSpecification {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String pathFile;
+	
+	private Resource fileSpecification;
+	
 	@OneToMany(mappedBy = "technicalSpecification")
 	private List<Project> project;
+	
+	
 	
 	public TechnicalSpecification() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TechnicalSpecification(String pathFile) {
+	
+
+	public TechnicalSpecification(Resource fileSpecification, List<Project> project) {
 		super();
-		this.pathFile = pathFile;
+		this.fileSpecification = fileSpecification;
+		this.project = project;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -34,13 +43,7 @@ public class TechnicalSpecification {
 		this.id = id;
 	}
 
-	public String getPathFile() {
-		return pathFile;
-	}
-
-	public void setPathFile(String pathFile) {
-		this.pathFile = pathFile;
-	}
+	
 
 	public List<Project> getProject() {
 		return project;
@@ -49,5 +52,23 @@ public class TechnicalSpecification {
 	public void setProject(List<Project> project) {
 		this.project = project;
 	}
+
+
+
+	public Resource getFileSpecification() {
+		return fileSpecification;
+	}
+
+
+
+	public void setFileSpecification(Resource fileSpecification) {
+		this.fileSpecification = fileSpecification;
+	}
+
+
+
+	
+	
+	
 	
 }

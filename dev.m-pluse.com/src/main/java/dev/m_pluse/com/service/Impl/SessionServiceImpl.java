@@ -51,7 +51,7 @@ public class SessionServiceImpl implements SessionService {
 	 */
 	public List<Session> sessionPerMonth() {
 		LocalDateTime date = LocalDateTime.now();
-		List<Session> list = new ArrayList();
+		List<Session> list = new ArrayList<>();
 		for (Session session : sessionDao.findAll()) {
 			if (date.getMonth().equals(session.getFinishSession().getMonth())) {
 				list.add(session);
@@ -68,7 +68,7 @@ public class SessionServiceImpl implements SessionService {
 
 	public List<Session> sessionPerMonth(Developer developer) {
 		LocalDateTime date = LocalDateTime.now();
-		List<Session> list = new ArrayList();
+		List<Session> list = new ArrayList<>();
 		for (Session session : sessionDao.findAll()) {
 			if (date.getMonth().equals(session.getFinishSession().getMonth())
 					&& developer.equals(session.getDeveloper())) {
@@ -85,7 +85,7 @@ public class SessionServiceImpl implements SessionService {
 	 */
 	public List<Session> sessionPerMonth(Department department) {
 		LocalDateTime date = LocalDateTime.now();
-		List<Session> list = new ArrayList();
+		List<Session> list = new ArrayList<>();
 		for (Session session : sessionDao.findAll()) {
 			if (date.getMonth().equals(session.getFinishSession().getMonth())
 					&& department.equals(session.getDeveloper().getDepartment())) {
@@ -103,7 +103,7 @@ public class SessionServiceImpl implements SessionService {
 	 */
 	public List<Session> sessionPerMonth(int numberMonth, int numbeYear) {
 
-		List<Session> list = new ArrayList();
+		List<Session> list = new ArrayList<>();
 		for (Session session : sessionDao.findAll()) {
 			if (session.getStartSession().getMonthValue() == numberMonth
 					&& session.getStartSession().getYear() == numbeYear) {
@@ -122,7 +122,7 @@ public class SessionServiceImpl implements SessionService {
 	 */
 	public List<Session> sessionPerMonth(int numberMonth, int numbeYear, Department department) {
 
-		List<Session> list = new ArrayList();
+		List<Session> list = new ArrayList<>();
 		for (Session session : sessionDao.findAll()) {
 			if (session.getStartSession().getMonthValue() == numberMonth
 					&& session.getStartSession().getYear() == numbeYear
@@ -142,7 +142,7 @@ public class SessionServiceImpl implements SessionService {
 	 */
 	public List<Session> sessionPerMonth(int numberMonth, int numberYear, Developer developer) {
 
-		List<Session> list = new ArrayList();
+		List<Session> list = new ArrayList<>();
 		for (Session session : sessionDao.findAll()) {
 			if (session.getStartSession().getMonthValue() == numberMonth
 					&& session.getStartSession().getYear() == numberYear && developer.equals(session.getDeveloper())) {
@@ -159,7 +159,7 @@ public class SessionServiceImpl implements SessionService {
 	 */
 	public List<Session> sessionPerYear(int numberYear) {
 
-		List<Session> list = new ArrayList();
+		List<Session> list = new ArrayList<>();
 		for (Session session : sessionDao.findAll()) {
 			if (session.getStartSession().getYear() == numberYear) {
 				list.add(session);
@@ -176,7 +176,7 @@ public class SessionServiceImpl implements SessionService {
 	 */
 	public List<Session> sessionPerYear(int numberYear, Department department) {
 
-		List<Session> list = new ArrayList();
+		List<Session> list = new ArrayList<>();
 		for (Session session : sessionDao.findAll()) {
 			if (session.getStartSession().getYear() == numberYear
 					&& department.equals(session.getDeveloper().getDepartment())) {
@@ -194,7 +194,7 @@ public class SessionServiceImpl implements SessionService {
 	 */
 	public List<Session> sessionPerYear(int numberYear, Developer developer) {
 
-		List<Session> list = new ArrayList();
+		List<Session> list = new ArrayList<>();
 		for (Session session : sessionDao.findAll()) {
 			if (session.getStartSession().getYear() == numberYear && developer.equals(session.getDeveloper())) {
 				list.add(session);
