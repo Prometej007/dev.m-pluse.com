@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Uuid {
@@ -13,7 +14,7 @@ public class Uuid {
 	private int id;
 	
 	private String uuid;
-	
+	@OneToOne
 	private Developer developer;
 	
 	public Uuid() {

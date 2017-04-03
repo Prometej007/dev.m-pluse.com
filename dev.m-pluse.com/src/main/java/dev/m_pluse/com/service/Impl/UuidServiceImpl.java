@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dev.m_pluse.com.dao.UuidDao;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Uuid;
 import dev.m_pluse.com.service.UuidService;
 
+@Service
 public class UuidServiceImpl implements UuidService {
 	@Autowired
 	private UuidDao uuidDao;

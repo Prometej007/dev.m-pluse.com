@@ -2,7 +2,7 @@ package dev.m_pluse.com.service;
 
 import java.util.List;
 
-import dev.m_pluse.com.entity.Project;
+import dev.m_pluse.com.entity.Resource;
 import dev.m_pluse.com.entity.TechnicalSpecification;
 
 public interface TechnicalSpecificationService {
@@ -14,8 +14,6 @@ public interface TechnicalSpecificationService {
 
 	void delete(int id);
 
-	public TechnicalSpecification createTechnicalSpecification(Project project);
-
-	public TechnicalSpecification selectTechnicalSpecificationFromProject(Project project);
+	public TechnicalSpecification createTechnicalSpecification(Resource resource);
 
 }

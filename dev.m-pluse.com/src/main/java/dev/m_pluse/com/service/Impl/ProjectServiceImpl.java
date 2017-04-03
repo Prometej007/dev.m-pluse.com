@@ -20,6 +20,7 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectDao projectDao;
 
 	public void save(Project project) {
+		
 		projectDao.save(project);
 
 	}
@@ -60,6 +61,7 @@ public class ProjectServiceImpl implements ProjectService {
 		project.setEndDate(endDate);
 		project.setCompany(company);
 		project.setTechnicalSpecification(technicalSpecification);
+		project.setReady(false);
 		save(project);
 	}
 

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Session {
@@ -19,7 +20,9 @@ public class Session {
 	private LocalDateTime finishSession;
 
 	private String report;
+	@OneToOne
 	private Resource resource;
+	@OneToOne
 	private Project project;
 
 	@ManyToOne
@@ -36,13 +39,13 @@ public class Session {
 		this.report = report;
 	}
 
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
+//	PUBLIC PROJECT GETPROJECT() {
+//		RETURN PROJECT;
+//	}
+//
+//	PUBLIC VOID SETPROJECT(PROJECT PROJECT) {
+//		THIS.PROJECT = PROJECT;
+//	}
 
 	public int getId() {
 		return id;
@@ -90,6 +93,15 @@ public class Session {
 
 	public void setDeveloper(Developer developer) {
 		this.developer = developer;
+	}
+	
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	@Override

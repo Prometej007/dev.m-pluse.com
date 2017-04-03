@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Project {
@@ -20,14 +21,16 @@ public class Project {
 	private Company company;
 	@ManyToOne
 	private Department department;
-	@ManyToOne
-	TechnicalSpecification technicalSpecification;
+	@OneToOne
+	private TechnicalSpecification technicalSpecification;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	@OneToMany(mappedBy = "project")
 	private List<Task> taskList;
 	@OneToMany(mappedBy = "project")
 	private List<Resource> resource;
+	private boolean ready;
+	
 
 	public Project() {
 		// TODO Auto-generated constructor stub
@@ -115,5 +118,17 @@ public class Project {
 	public void setResource(List<Resource> resource) {
 		this.resource = resource;
 	}
+
+	public boolean isReady() {
+		return ready;
+	}
+
+	public void setReady(boolean ready) {
+		this.ready = ready;
+	}
+	
+	
+
+	
 
 }

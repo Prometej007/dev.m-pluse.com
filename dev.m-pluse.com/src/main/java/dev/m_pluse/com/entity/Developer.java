@@ -34,11 +34,11 @@ public class Developer {
 	@JoinTable(name = "developer_task", joinColumns = @JoinColumn(name = "id_developer"), inverseJoinColumns = @JoinColumn(name = "id_task"))
 	private List<Task> task;
 
-	@OneToMany
+	@OneToMany(mappedBy = "developer")
 	private List<Session> sessions;
 
 	public Developer() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Developer(String login, String password, String firstName, String lastName, LocalDate dateOfBirth,

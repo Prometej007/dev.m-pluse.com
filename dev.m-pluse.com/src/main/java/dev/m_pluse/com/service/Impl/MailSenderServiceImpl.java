@@ -81,9 +81,9 @@ public class MailSenderServiceImpl implements MailSenderService {
 		try {
 			Uuid uuid = uuidService.createUuid(developer);
 			String mailBody = "<a href='" + new StringModification().overrideString(InetAddress.getLocalHost() + ":"
-					+ Configuration.PORT + "/" + Configuration.NAME_PROJECT + "/invite" + uuid.getUuid()) + "'></a>";
+					+ Configuration.PORT + "/" + Configuration.NAME_PROJECT + "/invite" + uuid.getUuid()) + "'>link</a>";
 
-			sendMail("invite Developer" + Configuration.NAME_PROJECT, mailBody, developer.getEmail());
+			sendMail("invite Developer " + Configuration.NAME_PROJECT, mailBody, developer.getEmail());
 
 		} catch (UnknownHostException e) {
 			e.printStackTrace();

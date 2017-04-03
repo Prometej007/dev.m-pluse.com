@@ -22,7 +22,7 @@ public class Department {
 	private List<Project> projects;
 
 	public Department() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getEmail() {

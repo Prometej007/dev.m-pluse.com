@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import dev.m_pluse.com.dao.ProjectDao;
 import dev.m_pluse.com.dao.ResourceDao;
@@ -17,6 +18,7 @@ import dev.m_pluse.com.entity.ResourceType;
 import dev.m_pluse.com.entity.Session;
 import dev.m_pluse.com.service.SessionService;
 
+@Service
 public class SessionServiceImpl implements SessionService {
 
 	@Autowired
@@ -277,12 +279,12 @@ public class SessionServiceImpl implements SessionService {
 	public List<Resource> sessionReport(Project project, Developer developer) {
 		List<Resource> list = new ArrayList<Resource>();
 
-		for (Session session : sessionDao.findAll()) {
-			if (session.getProject().equals(project) && session.getDeveloper().equals(developer)
-					&& session.getResource().getType().equals(ResourceType.SESSION_REPORT)) {
-				list.add(session.getResource());
-			}
-		}
+//		for (Session session : sessionDao.findAll()) {
+//			if (session.getProject().equals(project) && session.getDeveloper().equals(developer)
+//					&& session.getResource().getType().equals(ResourceType.SESSION_REPORT)) {
+//				list.add(session.getResource());
+//			}
+//		}
 		return list;
 	}
 

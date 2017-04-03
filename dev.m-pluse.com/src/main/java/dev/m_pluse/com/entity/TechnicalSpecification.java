@@ -4,30 +4,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class TechnicalSpecification {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+	@ManyToOne
 	private Resource fileSpecification;
 	
-	
-	private Project project;
 	
 	
 	
 	public TechnicalSpecification() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	
 
-	public TechnicalSpecification(Resource fileSpecification, Project project) {
+	public TechnicalSpecification(Resource fileSpecification) {
 		super();
 		this.fileSpecification = fileSpecification;
-		this.project = project;
+		
 	}
 
 
@@ -41,15 +42,6 @@ public class TechnicalSpecification {
 	}
 
 	
-
-	public Project getProject() {
-		return project;
-	}
-
-	public void setProject(Project project) {
-		this.project = project;
-	}
-
 
 
 	public Resource getFileSpecification() {
