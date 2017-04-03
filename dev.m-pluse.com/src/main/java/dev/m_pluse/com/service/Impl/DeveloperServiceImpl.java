@@ -18,6 +18,8 @@ public class DeveloperServiceImpl implements DeveloperService {
 
 	@Autowired
 	private DeveloperDao developerDao;
+	@Autowired
+	private MailSenderServiceImpl senderServiceImpl;
 
 	public void save(Developer developer) {
 		developerDao.save(developer);
@@ -80,6 +82,7 @@ public class DeveloperServiceImpl implements DeveloperService {
 		developer.setPosition(position);
 		developer.setDepartment(department);
 		save(developer);
+		senderServiceImpl.inviteDeveloper(developer);
 	}
 
 	/**
@@ -103,12 +106,11 @@ public class DeveloperServiceImpl implements DeveloperService {
 		save(developer);
 	}
 
-
 	public void updatePrositionDeveloper(Developer developer, Position position) {
-		
+
 		developer.setPosition(position);
 		save(developer);
-		
+
 	}
 
 }
