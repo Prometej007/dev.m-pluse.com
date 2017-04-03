@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import dev.m_pluse.com.dao.CompanyDao;
 import dev.m_pluse.com.entity.Company;
+import dev.m_pluse.com.entity.Customer;
 import dev.m_pluse.com.service.CompanyService;
+
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
@@ -31,6 +33,21 @@ public class CompanyServiceImpl implements CompanyService {
 	public void delete(int id) {
 		companyDao.delete(id);
 
+	}
+
+	/**
+	 * 
+	 * @param street
+	 * @param name
+	 * @param customer
+	 *            - list
+	 */
+	public void createCompany(String street, String name, List<Customer> customer) {
+		Company company = new Company();
+		company.setCustomer(customer);
+		company.setName(name);
+		company.setStreet(street);
+		save(company);
 	}
 
 }

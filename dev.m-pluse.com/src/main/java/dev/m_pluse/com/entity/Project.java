@@ -28,7 +28,7 @@ public class Project {
 	private List<Task> taskList;
 	@OneToMany(mappedBy = "project")
 	private List<Resource> resource;
-	
+
 	public Project() {
 		// TODO Auto-generated constructor stub
 	}
@@ -96,8 +96,8 @@ public class Project {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
+	public void setEndDate(LocalDate endDate2) {
+		this.endDate = endDate2;
 	}
 
 	public List<Task> getTaskList() {
@@ -115,7 +115,5 @@ public class Project {
 	public void setResource(List<Resource> resource) {
 		this.resource = resource;
 	}
-	
-	
 
 }
