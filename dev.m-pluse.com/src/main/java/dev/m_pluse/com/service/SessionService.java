@@ -40,6 +40,9 @@ public interface SessionService {
 
 	public void finishDaySessionPath(Developer developer, String path);
 
-	public List<Resource> SessionReport(Project project, Developer developer);
+	public List<Resource> sessionReport(Project project, Developer developer);
+
+	// or
+	public int sessionOfficeHours(Developer developer, int month);
 
 }

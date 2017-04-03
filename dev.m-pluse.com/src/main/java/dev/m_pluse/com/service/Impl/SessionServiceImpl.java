@@ -274,7 +274,7 @@ public class SessionServiceImpl implements SessionService {
 	 * @param developer
 	 * @return текстові звіти developer до проекту
 	 */
-	public List<Resource> SessionReport(Project project, Developer developer) {
+	public List<Resource> sessionReport(Project project, Developer developer) {
 		List<Resource> list = new ArrayList<Resource>();
 
 		for (Session session : sessionDao.findAll()) {
