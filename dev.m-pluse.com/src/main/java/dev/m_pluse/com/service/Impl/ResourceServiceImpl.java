@@ -1,13 +1,17 @@
 package dev.m_pluse.com.service.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.m_pluse.com.dao.ResourceDao;
+import dev.m_pluse.com.entity.Project;
 import dev.m_pluse.com.entity.Resource;
+import dev.m_pluse.com.entity.ResourceType;
 import dev.m_pluse.com.service.ResourceService;
+
 @Service
 public class ResourceServiceImpl implements ResourceService {
 
@@ -32,6 +36,66 @@ public class ResourceServiceImpl implements ResourceService {
 	public void delete(int id) {
 		resourceDao.delete(id);
 
+	}
+
+	/**
+	 * 
+	 * @param project
+	 * @return всі ресурси до проекту project
+	 */
+	public List<Resource> selectAllResourceFromProject(Project project) {
+		List<Resource> list = new ArrayList<Resource>();
+		for (Resource resource : resourceDao.findAll()) {
+			if (resource.getProject().equals(project)) {
+				list.add(resource);
+			}
+		}
+		return list;
+	}
+
+	/**
+	 * 
+	 * @param project
+	 * @return github силку до проекту project
+	 */
+	public List<Resource> selectResourceGithubFromProject(Project project) {
+		List<Resource> list = new ArrayList<Resource>();
+		for (Resource resource : resourceDao.findAll()) {
+			if (resource.equals(project.getResource())
+					&& resource.getType().equals(ResourceType.PROJECT_RESOURCE_GITHUB)) {
+				list.add(resource);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * 
+	 * @return всі аудіо файли DEVELOPER_AUDIO які незакріпленні за проектом
+	 */
+	public List<Resource> selectAllResourceAudio() {
+		List<Resource> list = new ArrayList<Resource>();
+		for (Resource resource : resourceDao.findAll()) {
+			if (resource.getType().equals(ResourceType.DEVELOPER_AUDIO) && resource.getProject() == null) {
+				list.add(resource);
+			}
+		}
+		return list;
+	}
+
+	/**
+	 * 
+	 * @return всі відео файли DEVELOPER_AUDIO які незакріпленні за проектом
+	 */
+	public List<Resource> selectAllResourceVideo() {
+		List<Resource> list = new ArrayList<Resource>();
+		for (Resource resource : resourceDao.findAll()) {
+			if (resource.getType().equals(ResourceType.DEVELOPER_VIDOE) && resource.getProject() == null) {
+				list.add(resource);
+			}
+		}
+		return list;
 	}
 
 }

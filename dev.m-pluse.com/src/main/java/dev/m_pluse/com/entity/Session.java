@@ -20,6 +20,7 @@ public class Session {
 
 	private String report;
 	private Resource resource;
+	private Project project;
 
 	@ManyToOne
 	private Developer developer;
@@ -33,6 +34,14 @@ public class Session {
 		this.startSession = startSession;
 		this.finishSession = finishSession;
 		this.report = report;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 	public int getId() {

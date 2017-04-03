@@ -14,13 +14,23 @@ public class Department {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	private String email;
+
 	@OneToMany(mappedBy = "department")
 	private List<Developer> develoupers;
 	@OneToMany(mappedBy = "department")
 	private List<Project> projects;
-	
+
 	public Department() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Department(String name) {
@@ -59,8 +69,5 @@ public class Department {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-	
-	
-	
-	
+
 }

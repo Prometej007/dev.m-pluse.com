@@ -16,9 +16,9 @@ public class Resource {
 	@ManyToOne
 	private Project project;
 	private String path;
-	
+
 	public Resource() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Resource(String name, ResourceType type, Project project, String path) {
@@ -68,5 +68,5 @@ public class Resource {
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
+
 }

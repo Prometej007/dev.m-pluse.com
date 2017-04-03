@@ -6,10 +6,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import dev.m_pluse.com.dao.ProjectDao;
 import dev.m_pluse.com.dao.ResourceDao;
 import dev.m_pluse.com.dao.SessionDao;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
+import dev.m_pluse.com.entity.Project;
 import dev.m_pluse.com.entity.Resource;
 import dev.m_pluse.com.entity.ResourceType;
 import dev.m_pluse.com.entity.Session;
@@ -21,6 +23,8 @@ public class SessionServiceImpl implements SessionService {
 	private SessionDao sessionDao;
 	@Autowired
 	private ResourceDao resourceDao;
+	@Autowired
+	private ProjectDao projectDao;
 
 	public void save(Session session) {
 		sessionDao.save(session);
@@ -263,4 +267,23 @@ public class SessionServiceImpl implements SessionService {
 		}
 
 	}
+
+	/**
+	 * 
+	 * @param project
+	 * @param developer
+	 * @return текстові звіти developer до проекту
+	 */
+	public List<Resource> SessionReport(Project project, Developer developer) {
+		List<Resource> list = new ArrayList<Resource>();
+
+		for (Session session : sessionDao.findAll()) {
+			if (session.getProject().equals(project) && session.getDeveloper().equals(developer)
+					&& session.getResource().getType().equals(ResourceType.SESSION_REPORT)) {
+				list.add(session.getResource());
+			}
+		}
+		return list;
+	}
+
 }
