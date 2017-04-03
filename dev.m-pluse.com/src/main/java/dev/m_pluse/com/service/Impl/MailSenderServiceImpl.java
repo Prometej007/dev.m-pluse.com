@@ -1,5 +1,7 @@
 package dev.m_pluse.com.service.Impl;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -26,9 +28,6 @@ import dev.m_pluse.com.service.MailSenderService;
 
 @Service
 public class MailSenderServiceImpl implements MailSenderService {
-
-	// private final static String USERNAME = "anazariks@gmail.com";// mail
-	// private final static String PASSWORD = "yfpfh1998";// password
 
 	/**
 	 * mailsender what more do u want to know? MimeMessageHelper - html page in
@@ -69,8 +68,16 @@ public class MailSenderServiceImpl implements MailSenderService {
 	@Override
 	public void inviteDeveloper(Developer developer) {
 
-		String mailBody = "";
-		sendMail("invite Developer" + Configuration.NAME_PROJECT, mailBody, developer.getEmail());
+		try {
+			String mailBody = "<a href=" + InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
+					+ Configuration.NAME_PROJECT + "/invite" + "PATHVARIBLE" + "></a>";
+			sendMail("invite Developer" + Configuration.NAME_PROJECT, mailBody, developer.getEmail());
+
+		} catch (UnknownHostException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 
 }
