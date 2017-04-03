@@ -106,8 +106,14 @@ public class ResourceServiceImpl implements ResourceService {
 		return list;
 	}
 
-	@Override
+	
 	public List<Resource> selectAllResourceImg() {
+		List<Resource> list = new ArrayList<Resource>();
+		for (Resource resource : resourceDao.findAll()) {
+			if(resource.getType().equals(ResourceType.DEVELOPER_IMG)){
+				list.add(resource);
+			}
+		}
 		
 		return null;
 	}
