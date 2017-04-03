@@ -14,10 +14,8 @@ public interface TechnicalSpecificationService {
 
 	void delete(int id);
 
-	// or
 	public TechnicalSpecification createTechnicalSpecification(Project project);
 
-	// or
-	public List<TechnicalSpecification> selectTechnicalSpecificationFromProject(Project project);
+	public TechnicalSpecification selectTechnicalSpecificationFromProject(Project project);
 
 }

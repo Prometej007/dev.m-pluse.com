@@ -42,7 +42,6 @@ public interface SessionService {
 
 	public List<Resource> sessionReport(Project project, Developer developer);
 
-	// or
 	public int sessionOfficeHours(Developer developer, int month);
 
 }

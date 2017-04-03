@@ -286,10 +286,14 @@ public class SessionServiceImpl implements SessionService {
 		return list;
 	}
 
-
 	public int sessionOfficeHours(Developer developer, int month) {
-		
-		return 0;
+		int hours=0;
+		for (Session session : developer.getSessions()) {
+			if(session.getStartSession().getMonthValue()==month){
+				hours+=session.getFinishSession().getHour()-session.getStartSession().getHour();
+			}
+		}
+		return hours;
 	}
 
 }

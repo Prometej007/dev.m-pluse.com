@@ -25,15 +25,14 @@ public interface ResourceService {
 
 	public List<Resource> selectAllResourceVideo();
 
-	// or
-	public List<Resource> selectAllResourceImg();
+	public List<Resource> selectAllDevResourceImg();
 
+	public List<Resource> selectAllProjectResourceImg();
 	
 	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type);
 	
 	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type,Project project);
 
-	// or
 	public List<Resource> searchFileByResourceType(ResourceType resourceType);
 
 }

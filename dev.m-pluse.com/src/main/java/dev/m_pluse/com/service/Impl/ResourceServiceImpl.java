@@ -107,15 +107,27 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	
-	public List<Resource> selectAllResourceImg() {
+	public List<Resource> selectAllDevResourceImg() {
 		List<Resource> list = new ArrayList<Resource>();
 		for (Resource resource : resourceDao.findAll()) {
-			if(resource.getType().equals(ResourceType.DEVELOPER_IMG)){
+			if(resource.getType().equals(ResourceType.DEVELOPER_IMG)
+					&& resource.getProject().getDepartment().getDeveloupers()!=null){
 				list.add(resource);
 			}
 		}
 		
-		return null;
+		return list;
+	}
+
+	public List<Resource> selectAllProjectResourceImg() {
+		List<Resource> list = new ArrayList<Resource>();
+		for (Resource resource : resourceDao.findAll()) {
+			if(resource.getType().equals(ResourceType.DEVELOPER_IMG)
+					&& resource.getProject()!=null){
+				list.add(resource);
+			}
+		}
+		return list;
 	}
 
 	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type) {
@@ -149,13 +161,18 @@ public class ResourceServiceImpl implements ResourceService {
 
 	}
 
-	@Override
+
 	public List<Resource> searchFileByResourceType(ResourceType resourceType) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Resource> list = new ArrayList<Resource>();
+		for (Resource resource : resourceDao.findAll()) {
+			if(resource.getType().equals(resourceType)){
+				list.add(resource);
+			}
+		}
+		return list;
 	}
 
-	@Override
+
 	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type, Project project) {
 		Resource resource = null;
 
@@ -187,5 +204,9 @@ public class ResourceServiceImpl implements ResourceService {
 
 		
 	}
+
+
+
+
 
 }

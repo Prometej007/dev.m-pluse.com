@@ -1,12 +1,9 @@
 package dev.m_pluse.com.entity;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class TechnicalSpecification {
@@ -16,8 +13,8 @@ public class TechnicalSpecification {
 	
 	private Resource fileSpecification;
 	
-	@OneToMany(mappedBy = "technicalSpecification")
-	private List<Project> project;
+	
+	private Project project;
 	
 	
 	
@@ -27,7 +24,7 @@ public class TechnicalSpecification {
 
 	
 
-	public TechnicalSpecification(Resource fileSpecification, List<Project> project) {
+	public TechnicalSpecification(Resource fileSpecification, Project project) {
 		super();
 		this.fileSpecification = fileSpecification;
 		this.project = project;
@@ -45,11 +42,11 @@ public class TechnicalSpecification {
 
 	
 
-	public List<Project> getProject() {
+	public Project getProject() {
 		return project;
 	}
 
-	public void setProject(List<Project> project) {
+	public void setProject(Project project) {
 		this.project = project;
 	}
 

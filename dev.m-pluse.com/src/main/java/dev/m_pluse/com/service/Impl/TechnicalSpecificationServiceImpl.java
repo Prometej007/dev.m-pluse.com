@@ -33,15 +33,25 @@ public class TechnicalSpecificationServiceImpl implements TechnicalSpecification
 
 	}
 
-	@Override
 	public TechnicalSpecification createTechnicalSpecification(Project project) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		TechnicalSpecification specification=new TechnicalSpecification();
+			if(specification.getProject()==null){
+				specification.setProject(project);
+				save(specification);
+			}
+		
+		return specification;
 	}
 
-	@Override
-	public List<TechnicalSpecification> selectTechnicalSpecificationFromProject(Project project) {
-		// TODO Auto-generated method stub
+	
+	public TechnicalSpecification selectTechnicalSpecificationFromProject(Project project) {
+		
+		TechnicalSpecification specification=new TechnicalSpecification();
+		if(specification.getProject()!=null){
+			return specification;
+		}
+		
 		return null;
 	}
 
