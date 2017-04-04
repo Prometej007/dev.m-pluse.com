@@ -7,59 +7,80 @@ import dev.m_pluse.com.entity.Company;
 import dev.m_pluse.com.entity.Customer;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
+import dev.m_pluse.com.entity.Project;
 import dev.m_pluse.com.entity.Session;
+import dev.m_pluse.com.entity.Task;
 
 public class DtoUtilMapper {
-
-	List<CustomerDTO> customerTo—ustomerDTO(List<Customer> list) {
-		List<CustomerDTO> dto = new ArrayList<CustomerDTO>();
-		for (Customer Òustomer : list) {
-			dto.add(new CustomerDTO(Òustomer.getId(), Òustomer.getLastName(), Òustomer.getFirstName(),
-					Òustomer.getCompany(), Òustomer.getPosition(), Òustomer.getPhoneNumber()));
-		}
-		return dto;
+	public CompanyDTO companyToCompanyDTO(Company company) {
+		return new CompanyDTO(company.getId(), company.getName(), projectToString(company.getProject()),
+				customerToCustomerDTO(company.getCustomer()), company.getStreet());
 	}
 
-	List<CompanyDTO> companyToCompanyDTO(List<Company> list) {
-		List<CompanyDTO> dto = new ArrayList<CompanyDTO>();
-		for (Company company : list) {
-			dto.add(new CompanyDTO(company.getId(), company.getName(), company.getProject(), company.getCustomer(),
-					company.getStreet()));
-		}
-		return dto;
+	public DepartmentDTO departmentToDepartmentDTO(Department department) {
+return new DepartmentDTO(department.getId(), department.getName(), department.getEmail(), develoupers, projects)
 	}
 
-	List<DepartmentDTO> departmentToDepartmentDTO(List<Department> list) {
-		List<DepartmentDTO> dto = new ArrayList<DepartmentDTO>();
-		for (Department department : list) {
-			dto.add(new DepartmentDTO(department.getId(), department.getName(), department.getEmail(),
-					department.getDeveloupers(), projects));
-		}
-		return dto;
+	public SessionDTO sessionToSessionDTO(Session session) {
+		return new SessionDTO(session.getId(), session.getStartSession(), session.getFinishSession(),
+				session.getReport(), session.getResource().getPath(), session.getProject().getName());
 	}
 
-	List<DeveloperDTO> developerToDeveloper(List<Developer> list) {
-		List<DeveloperDTO> dto = new ArrayList<DeveloperDTO>();
-		for (Developer developer : list) {
-			dto.add(new DeveloperDTO(developer.getId(), developer.getLogin(), developer.getPassword(),
-					developer.getEmail(), developer.getFirstName(), developer.getLastName(), developer.getDateOfBirth(),
-					developer.getDateOfEmployment(), developer.getDepartment(), developer.getPosition(),
-					developer.getPosition(), developer.getSessions()));
+	public List<SessionDTO> sessionToSessionDTO(List<Session> session) {
+		List<SessionDTO> list = new ArrayList<SessionDTO>();
+		for (Session obj : session) {
+			list.add(sessionToSessionDTO(obj));
 		}
-		return dto;
+		return list;
 	}
 
-	List<SessionDTO> sessionToSession(List<Session> list) {
-		List<SessionDTO> dto = new ArrayList<SessionDTO>();
-		for (Session session : list) {
-			dto.add(new SessionDTO(session.getId(), session.getStartSession(), session.getFinishSession(),
-					session.getReport(), session.getResource(), session.getProject(), session.getDeveloper()));
-		}
-		return dto;
+	public DeveloperDTO developerToDeveloperDTO(Developer developer) {
+		return new DeveloperDTO(developer.getId(), developer.getLogin(), developer.getPassword(), developer.getEmail(),
+				developer.getFirstName(), developer.getLastName(), developer.getLastName(),
+				developer.getDateOfEmployment(), developer.getDepartment().getName(), position,
+				taskToTaskDTO(developer.getTask()), sessionToSessionDTO(developer.getSessions()));
 	}
 
-	SessionDTO sessionToSession(Session session) {
-return new SessionDTO(, startSession, finishSession, report, resource, project, developer)
+	public TaskDTO taskToTaskDTO(Task task) {
+		return new TaskDTO(task.getId(), developerTOIndeterArray(task.getDevelopers()), task.getProject().getName(),
+				task.isInProces());
+	}
+
+	public List<TaskDTO> taskToTaskDTO(List<Task> task) {
+		List<TaskDTO> list = new ArrayList<>();
+		for (Task obj : task) {
+			list.add(taskToTaskDTO(obj));
+		}
+		return list;
+	}
+
+	public List<Integer> developerTOIndeterArray(List<Developer> developers) {
+		List<Integer> list = new ArrayList<>();
+		for (Developer obj : developers) {
+			list.add(obj.getId());
+		}
+		return list;
+	}
+
+	public List<String> projectToString(List<Project> project) {
+		List<String> list = new ArrayList<String>();
+		for (Project obj : project) {
+			list.add(obj.getName());
+		}
+		return list;
+	}
+
+	public CustomerDTO customerToCustomerDTO(Customer customer) {
+		return new CustomerDTO(customer.getId(), customer.getLastName(), customer.getFirstName(),
+				customer.getCompany().getName(), customer.getPosition(), customer.getPhoneNumber());
+	}
+
+	public List<CustomerDTO> customerToCustomerDTO(List<Customer> customer) {
+		List<CustomerDTO> list = new ArrayList<>();
+		for (Customer obj : customer) {
+			list.add(customerToCustomerDTO(obj));
+		}
+		return list;
 	}
 
 }
