@@ -8,8 +8,10 @@ import dev.m_pluse.com.entity.Customer;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Project;
+import dev.m_pluse.com.entity.Resource;
 import dev.m_pluse.com.entity.Session;
 import dev.m_pluse.com.entity.Task;
+import dev.m_pluse.com.entity.TechnicalSpecification;
 
 public class DtoUtilMapper {
 	public CompanyDTO companyToCompanyDTO(Company company) {
@@ -18,7 +20,30 @@ public class DtoUtilMapper {
 	}
 
 	public DepartmentDTO departmentToDepartmentDTO(Department department) {
-return new DepartmentDTO(department.getId(), department.getName(), department.getEmail(), develoupers, projects)
+		return new DepartmentDTO(department.getId(), department.getName(), department.getEmail(), develoupers,
+				projects);
+	}
+
+	public ProjectDTO projectToProjectDTO(Project project) {
+return new ProjectDTO(project.getId(), project.getName(), project.getCompany().getName(), project.getDepartment().getName(), technicalSpecificationToTechnicalSpecificationDTO(project.getTechnicalSpecification()), project.getStartDate(), project.getEndDate(), taskToTaskDTO(project.getTaskList()), project.getResource(), ready)
+	}
+
+	public TechnicalSpecificationDTO technicalSpecificationToTechnicalSpecificationDTO(
+			TechnicalSpecification technicalSpecification) {
+		return new TechnicalSpecificationDTO(technicalSpecification.getId(),
+				technicalSpecification.getFileSpecification().getPath());
+	}
+
+	public ResourceDTO resourceToResourceDTO(Resource resource) {
+		return new ResourceDTO(resource.getId(), resource.getName(), type, resource.getPath());
+	}
+
+	public List<ResourceDTO> resourceToResourceDTO(List<Resource> resource) {
+		List<ResourceDTO> list = new ArrayList<>();
+		for (Resource obj : resource) {
+			list.add(resourceToResourceDTO(obj));
+		}
+		return list;
 	}
 
 	public SessionDTO sessionToSessionDTO(Session session) {
