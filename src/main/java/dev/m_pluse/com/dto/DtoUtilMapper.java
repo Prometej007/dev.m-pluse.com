@@ -22,12 +22,24 @@ public class DtoUtilMapper {
 	}
 
 	public DepartmentDTO departmentToDepartmentDTO(Department department) {
-		return new DepartmentDTO(department.getId(), department.getName(), department.getEmail(), develoupers,
-				projects);
+		return new DepartmentDTO(department.getId(), department.getName(), department.getEmail(),
+				developerToDeveloperDTO(department.getDeveloupers()), projectToProjectDTO(department.getProjects()));
 	}
 
 	public ProjectDTO projectToProjectDTO(Project project) {
-return new ProjectDTO(project.getId(), project.getName(), project.getCompany().getName(), project.getDepartment().getName(), technicalSpecificationToTechnicalSpecificationDTO(project.getTechnicalSpecification()), project.getStartDate(), project.getEndDate(), taskToTaskDTO(project.getTaskList()), project.getResource(), ready)
+		return new ProjectDTO(project.getId(), project.getName(), project.getCompany().getName(),
+				project.getDepartment().getName(),
+				technicalSpecificationToTechnicalSpecificationDTO(project.getTechnicalSpecification()),
+				project.getStartDate(), project.getEndDate(), taskToTaskDTO(project.getTaskList()),
+				resourceToResourceDTO(project.getResource()), project.isReady());
+	}
+
+	public List<ProjectDTO> projectToProjectDTO(List<Project> project) {
+		List<ProjectDTO> list = new ArrayList<ProjectDTO>();
+		for (Project obj : project) {
+			list.add(projectToProjectDTO(obj));
+		}
+		return list;
 	}
 
 	public TechnicalSpecificationDTO technicalSpecificationToTechnicalSpecificationDTO(
@@ -37,7 +49,8 @@ return new ProjectDTO(project.getId(), project.getName(), project.getCompany().g
 	}
 
 	public ResourceDTO resourceToResourceDTO(Resource resource) {
-		return new ResourceDTO(resource.getId(), resource.getName(), type, resource.getPath());
+		return new ResourceDTO(resource.getId(), resource.getName(), resourceType(resource.getType()),
+				resource.getPath());
 	}
 
 	public List<ResourceDTO> resourceToResourceDTO(List<Resource> resource) {
@@ -63,9 +76,17 @@ return new ProjectDTO(project.getId(), project.getName(), project.getCompany().g
 
 	public DeveloperDTO developerToDeveloperDTO(Developer developer) {
 		return new DeveloperDTO(developer.getId(), developer.getLogin(), developer.getPassword(), developer.getEmail(),
-				developer.getFirstName(), developer.getLastName(), developer.getLastName(),
-				developer.getDateOfEmployment(), developer.getDepartment().getName(), position,
+				developer.getFirstName(), developer.getLastName(), developer.getDateOfBirth(),
+				developer.getDateOfEmployment(), developer.getDepartment().getName(), position(developer.getPosition()),
 				taskToTaskDTO(developer.getTask()), sessionToSessionDTO(developer.getSessions()));
+	}
+
+	public List<DeveloperDTO> developerToDeveloperDTO(List<Developer> developer) {
+		List<DeveloperDTO> list = new ArrayList<DeveloperDTO>();
+		for (Developer obj : developer) {
+			developerToDeveloperDTO(obj);
+		}
+		return list;
 	}
 
 	public TaskDTO taskToTaskDTO(Task task) {
@@ -109,7 +130,7 @@ return new ProjectDTO(project.getId(), project.getName(), project.getCompany().g
 		}
 		return list;
 	}
-	
+
 	public String position(Position position) {
 
 		switch (position) {
@@ -191,6 +212,7 @@ return new ProjectDTO(project.getId(), project.getName(), project.getCompany().g
 
 		return null;
 	}
+
 	public ResourceType getResourceType(String resourcesType) {
 
 		switch (resourcesType) {
