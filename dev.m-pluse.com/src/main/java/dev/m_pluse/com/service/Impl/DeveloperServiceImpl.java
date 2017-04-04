@@ -12,6 +12,7 @@ import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Position;
 import dev.m_pluse.com.entity.Uuid;
+import dev.m_pluse.com.entity.UuidType;
 import dev.m_pluse.com.service.DeveloperService;
 import dev.m_pluse.com.service.MailSenderService;
 import dev.m_pluse.com.service.UuidService;
@@ -43,7 +44,7 @@ public class DeveloperServiceImpl implements DeveloperService {
 		developerDao.delete(id);
 	}
 
-	public Developer findOneByUuid(String id) {
+	public Developer findOneByUuid(String id, UuidType type) {
 		Developer developer = null;
 		for (Uuid uuid : uuidService.findAll()) {
 			if (uuid.getUuid().equals(id)) {
@@ -51,6 +52,16 @@ public class DeveloperServiceImpl implements DeveloperService {
 			}
 		}
 		return developer;
+	}
+
+	public Developer findOneByEmail(String email) {
+		for (Developer developer : developerDao.findAll()) {
+			if (developer.getEmail().equals(email)) {
+				return developer;
+			}
+
+		}
+		return null;
 	}
 
 	/**
@@ -110,8 +121,8 @@ public class DeveloperServiceImpl implements DeveloperService {
 	 */
 	public void registrationDeveloper(String id, String login, String password, LocalDate dateOfBirth, String firstName,
 			String lastName) {
-		
-		Developer developer = findOneByUuid(id);
+
+		Developer developer = findOneByUuid(id, UuidType.REGISTRATION_DEVELOPER);
 		developer.setLogin(login);
 		developer.setPassword(password);
 		developer.setDateOfBirth(dateOfBirth);
@@ -119,9 +130,40 @@ public class DeveloperServiceImpl implements DeveloperService {
 		developer.setLastName(lastName);
 		developer.setDateOfEmployment(LocalDate.now());
 		save(developer);
-		uuidService.delete(uuidService.findOneByUuid(id).getId());
+		uuidService.delete(uuidService.findOneByUuid(id, UuidType.REGISTRATION_DEVELOPER).getId());
 	}
 
+	/**
+	 * 
+	 * @param email
+	 *            запита на зміну паролю
+	 */
+	public void changePasswordSend(String email) {
+
+		mailSenderService.changePassword(findOneByEmail(email));
+		uuidService.createUuid(findOneByEmail(email), UuidType.CHANGE_PASSWORD);
+	}
+
+	/**
+	 * @param String
+	 *            id
+	 * @param String
+	 *            password
+	 * 
+	 */
+	public void changePassword(String id, String password) {
+		Developer developer = findOneByUuid(id, UuidType.CHANGE_PASSWORD);
+		developer.setPassword(password);
+		save(developer);
+		uuidService.delete(uuidService.findOneByUuid(id, UuidType.CHANGE_PASSWORD).getId());
+	}
+
+	/**
+	 * @param Developer
+	 *            developer
+	 * @param Position
+	 *            position - updete position
+	 */
 	public void updatePrositionDeveloper(Developer developer, Position position) {
 
 		developer.setPosition(position);

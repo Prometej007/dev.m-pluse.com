@@ -20,4 +20,8 @@ public interface ProjectService {
 
 	public void createProject(String name, Company company, Department department,
 			TechnicalSpecification technicalSpecification, LocalDate endDate);
+
+	public List<Project> selectAllReadyProject();
+
+	public List<Project> selectAllDontReadyProject();
 }

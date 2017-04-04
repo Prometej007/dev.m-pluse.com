@@ -40,9 +40,9 @@ public class UuidServiceImpl implements UuidService {
 
 	}
 
-	public Uuid findOneByUuid(String id) {
+	public Uuid findOneByUuid(String id, UuidType type) {
 		for (Uuid uuid : findAll()) {
-			if (uuid.getUuid().equals(id)) {
+			if (uuid.getUuid().equals(id) && uuid.getType().equals(type)) {
 				return uuid;
 			}
 

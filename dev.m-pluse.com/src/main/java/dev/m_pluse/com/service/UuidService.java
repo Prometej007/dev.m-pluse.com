@@ -15,9 +15,7 @@ public interface UuidService {
 
 	void delete(int id);
 
-
-
-	public Uuid findOneByUuid(String id);
+	public Uuid findOneByUuid(String id, UuidType type);
 
 	public Uuid createUuid(Developer developer, UuidType type);
 

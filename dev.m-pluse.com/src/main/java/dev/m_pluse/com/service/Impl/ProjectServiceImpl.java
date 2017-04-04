@@ -1,6 +1,7 @@
 package dev.m_pluse.com.service.Impl;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class ProjectServiceImpl implements ProjectService {
 	private ProjectDao projectDao;
 
 	public void save(Project project) {
-		
+
 		projectDao.save(project);
 
 	}
@@ -63,6 +64,34 @@ public class ProjectServiceImpl implements ProjectService {
 		project.setTechnicalSpecification(technicalSpecification);
 		project.setReady(false);
 		save(project);
+	}
+
+	/**
+	 * return ready project
+	 */
+	public List<Project> selectAllReadyProject() {
+		List<Project> list = new ArrayList<Project>();
+		for (Project project : projectDao.findAll()) {
+			if (project.isReady()) {
+				list.add(project);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * return don't ready project
+	 */
+	public List<Project> selectAllDontReadyProject() {
+		List<Project> list = new ArrayList<Project>();
+		for (Project project : projectDao.findAll()) {
+			if (!project.isReady()) {
+				list.add(project);
+			}
+		}
+
+		return list;
 	}
 
 }
