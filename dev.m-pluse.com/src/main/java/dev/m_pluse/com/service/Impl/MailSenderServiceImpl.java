@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import dev.m_pluse.com.constants.Configuration;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Uuid;
+import dev.m_pluse.com.entity.UuidType;
 import dev.m_pluse.com.service.MailSenderService;
 import dev.m_pluse.com.service.UuidService;
 import dev.m_pluse.resource.wrapper.StringModification;
@@ -79,9 +80,10 @@ public class MailSenderServiceImpl implements MailSenderService {
 	public void inviteDeveloper(Developer developer) {
 
 		try {
-			Uuid uuid = uuidService.createUuid(developer);
+			Uuid uuid = uuidService.createUuid(developer, UuidType.REGISTRATION_DEVELOPER);
 			String mailBody = "<a href='" + new StringModification().overrideString(InetAddress.getLocalHost() + ":"
-					+ Configuration.PORT + "/" + Configuration.NAME_PROJECT + "/invite" + uuid.getUuid()) + "'>link</a>";
+					+ Configuration.PORT + "/" + Configuration.NAME_PROJECT + "/invite" + uuid.getUuid())
+					+ "'>link</a>";
 
 			sendMail("invite Developer " + Configuration.NAME_PROJECT, mailBody, developer.getEmail());
 
@@ -95,7 +97,7 @@ public class MailSenderServiceImpl implements MailSenderService {
 		String theme = "";
 		String mailBody = "";
 		try {
-			Uuid uuid = uuidService.createUuid(developer);
+			Uuid uuid = uuidService.createUuid(developer, UuidType.CHANGE_PASSWORD);
 			mailBody = "<a href='" + new StringModification().overrideString(InetAddress.getLocalHost() + ":"
 					+ Configuration.PORT + "/" + Configuration.NAME_PROJECT + "/changePassword" + uuid.getUuid())
 					+ "'></a>";

@@ -4,6 +4,7 @@ import java.util.List;
 
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Uuid;
+import dev.m_pluse.com.entity.UuidType;
 
 public interface UuidService {
 	void save(Uuid uuid);
@@ -14,5 +15,5 @@ public interface UuidService {
 
 	void delete(int id);
 
-	public Uuid createUuid(Developer developer);
+	public Uuid createUuid(Developer developer, UuidType type);
 }
