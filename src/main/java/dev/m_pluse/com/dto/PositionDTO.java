@@ -38,19 +38,19 @@ public class PositionDTO {
 		case DECELOPER_RESOURCE:
 			return "DECELOPER_RESOURCE";
 		case DEVELOPER_AUDIO:
-			return "DECELOPER_RESOURCE";
+			return "DEVELOPER_AUDIO";
 		case DEVELOPER_IMG:
-			return "DECELOPER_RESOURCE";
+			return "DEVELOPER_IMG";
 		case DEVELOPER_VIDOE:
-			return "DECELOPER_RESOURCE";
+			return "DEVELOPER_VIDOE";
 		case PROJECT_RESOURCE:
-			return "DECELOPER_RESOURCE";
+			return "PROJECT_RESOURCE";
 		case PROJECT_RESOURCE_GITHUB:
-			return "DECELOPER_RESOURCE";
+			return "PROJECT_RESOURCE_GITHUB";
 		case SESSION_DATA:
-			return "DECELOPER_RESOURCE";
+			return "SESSION_DATA";
 		case SESSION_REPORT:
-			return "DECELOPER_RESOURCE";
+			return "SESSION_REPORT";
 
 		default:
 			break;
