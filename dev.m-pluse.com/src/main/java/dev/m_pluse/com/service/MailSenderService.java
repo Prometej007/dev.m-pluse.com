@@ -12,4 +12,6 @@ public interface MailSenderService {
 
 	public void inviteDeveloper(Developer developer);
 
+	public void changePassword(Developer developer);
+
 }

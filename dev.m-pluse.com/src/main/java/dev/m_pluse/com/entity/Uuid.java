@@ -8,23 +8,26 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Uuid {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private String uuid;
 	@OneToOne
 	private Developer developer;
-	
+
+	private UuidType type;
+
 	public Uuid() {
-		
+
 	}
 
-	public Uuid(String uuid, Developer developer) {
+	public Uuid(String uuid, Developer developer, UuidType type) {
 		super();
 		this.uuid = uuid;
 		this.developer = developer;
+		this.type = type;
 	}
 
 	public int getId() {
@@ -50,8 +53,13 @@ public class Uuid {
 	public void setDeveloper(Developer developer) {
 		this.developer = developer;
 	}
-	
-	
-	
+
+	public UuidType getType() {
+		return type;
+	}
+
+	public void setType(UuidType type) {
+		this.type = type;
+	}
 
 }

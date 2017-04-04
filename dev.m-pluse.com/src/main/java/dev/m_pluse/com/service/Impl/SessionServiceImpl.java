@@ -279,20 +279,32 @@ public class SessionServiceImpl implements SessionService {
 	public List<Resource> sessionReport(Project project, Developer developer) {
 		List<Resource> list = new ArrayList<Resource>();
 
-//		for (Session session : sessionDao.findAll()) {
-//			if (session.getProject().equals(project) && session.getDeveloper().equals(developer)
-//					&& session.getResource().getType().equals(ResourceType.SESSION_REPORT)) {
-//				list.add(session.getResource());
-//			}
-//		}
+		// for (Session session : sessionDao.findAll()) {
+		// if (session.getProject().equals(project) &&
+		// session.getDeveloper().equals(developer)
+		// &&
+		// session.getResource().getType().equals(ResourceType.SESSION_REPORT))
+		// {
+		// list.add(session.getResource());
+		// }
+		// }
 		return list;
 	}
 
-	public int sessionOfficeHours(Developer developer, int month) {
-		int hours=0;
+	/**
+	 * @param Developer
+	 *            developer -розробник
+	 * @param int
+	 *            month - м≥с€ць за €кий зв≥т
+	 * @param int
+	 *            year-р≥к
+	 * 
+	 */
+	public int sessionOfficeHours(Developer developer, int month, int year) {
+		int hours = 0;
 		for (Session session : developer.getSessions()) {
-			if(session.getStartSession().getMonthValue()==month){
-				hours+=session.getFinishSession().getHour()-session.getStartSession().getHour();
+			if (session.getStartSession().getMonthValue() == month && session.getStartSession().getYear() == year) {
+				hours += session.getFinishSession().getHour() - session.getStartSession().getHour();
 			}
 		}
 		return hours;
