@@ -39,6 +39,17 @@ public class UuidServiceImpl implements UuidService {
 
 	}
 
+	public Uuid findOneByUuid(String id) {
+		for (Uuid uuid : findAll()) {
+			if (uuid.getUuid().equals(id)) {
+				return uuid;
+			}
+
+		}
+		return null;
+
+	}
+
 	/**
 	 * @param Developer
 	 *            developer

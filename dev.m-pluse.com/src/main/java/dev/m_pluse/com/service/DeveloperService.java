@@ -16,13 +16,15 @@ public interface DeveloperService {
 
 	void delete(int id);
 
+	public Developer findOneByUuid(String id);
+
 	public List<Developer> allDeveloperOfTheDepartment(Department department);
 
 	public List<Developer> allDeveloperOfTheDepartmentWithPosition(Department department, Position position);
 
 	public void createDeveloper(String email, Position position, Department department);
 
-	public void registrationDeveloper(int id, String login, String password, LocalDate dateOfBirth, String firstName,
+	public void registrationDeveloper(String id, String login, String password, LocalDate dateOfBirth, String firstName,
 			String lastName);
 
 	public void updatePrositionDeveloper(Developer developer, Position position);

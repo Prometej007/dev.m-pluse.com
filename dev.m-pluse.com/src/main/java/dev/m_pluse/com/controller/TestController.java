@@ -1,5 +1,7 @@
 package dev.m_pluse.com.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,8 +33,8 @@ public class TestController {
 
 	@RequestMapping("invite{id}")
 	public String invite(@PathVariable String id) {
-
-		System.out.println("govno+++++++++++++++++++++++++++++++++++++++++++++++++ [ "+id+" ] ");
+		developerService.registrationDeveloper(id, "1", "1", LocalDate.now(), "krijan", "govno");
+		System.out.println("govno+++++++++++++++++++++++++++++++++++++++++++++++++ [ " + id + " ] ");
 
 		return "redirect:/";
 	}

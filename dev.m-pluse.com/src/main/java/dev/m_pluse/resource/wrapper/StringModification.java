@@ -5,6 +5,8 @@ package dev.m_pluse.resource.wrapper;
  */
 public class StringModification {
 
+	
+	
 	/**
 	 * 
 	 * @param base
@@ -22,7 +24,7 @@ public class StringModification {
 				}
 
 			} else {
-
+				
 			}
 		}
 

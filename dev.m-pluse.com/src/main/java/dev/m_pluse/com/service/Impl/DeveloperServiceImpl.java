@@ -11,7 +11,10 @@ import dev.m_pluse.com.dao.DeveloperDao;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Position;
+import dev.m_pluse.com.entity.Uuid;
 import dev.m_pluse.com.service.DeveloperService;
+import dev.m_pluse.com.service.MailSenderService;
+import dev.m_pluse.com.service.UuidService;
 
 @Service
 public class DeveloperServiceImpl implements DeveloperService {
@@ -19,7 +22,9 @@ public class DeveloperServiceImpl implements DeveloperService {
 	@Autowired
 	private DeveloperDao developerDao;
 	@Autowired
-	private MailSenderServiceImpl senderServiceImpl;
+	private UuidService uuidService;
+	@Autowired
+	private MailSenderService mailSenderService;
 
 	public void save(Developer developer) {
 		developerDao.save(developer);
@@ -36,7 +41,16 @@ public class DeveloperServiceImpl implements DeveloperService {
 
 	public void delete(int id) {
 		developerDao.delete(id);
+	}
 
+	public Developer findOneByUuid(String id) {
+		Developer developer = null;
+		for (Uuid uuid : uuidService.findAll()) {
+			if (uuid.getUuid().equals(id)) {
+				developer = uuid.getDeveloper();
+			}
+		}
+		return developer;
 	}
 
 	/**
@@ -82,7 +96,7 @@ public class DeveloperServiceImpl implements DeveloperService {
 		developer.setPosition(position);
 		developer.setDepartment(department);
 		save(developer);
-		senderServiceImpl.inviteDeveloper(developer);
+		mailSenderService.inviteDeveloper(developer);
 	}
 
 	/**
@@ -94,9 +108,10 @@ public class DeveloperServiceImpl implements DeveloperService {
 	 * @param firstName
 	 * @param lastName
 	 */
-	public void registrationDeveloper(int id, String login, String password, LocalDate dateOfBirth, String firstName,
+	public void registrationDeveloper(String id, String login, String password, LocalDate dateOfBirth, String firstName,
 			String lastName) {
-		Developer developer = findOne(id);
+		
+		Developer developer = findOneByUuid(id);
 		developer.setLogin(login);
 		developer.setPassword(password);
 		developer.setDateOfBirth(dateOfBirth);
@@ -104,6 +119,7 @@ public class DeveloperServiceImpl implements DeveloperService {
 		developer.setLastName(lastName);
 		developer.setDateOfEmployment(LocalDate.now());
 		save(developer);
+		uuidService.delete(uuidService.findOneByUuid(id).getId());
 	}
 
 	public void updatePrositionDeveloper(Developer developer, Position position) {
