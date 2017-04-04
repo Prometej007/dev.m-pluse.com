@@ -57,8 +57,8 @@ public class CustomerServiceImpl implements ÑustomerService {
 	}
 
 	
-	public List<CustomerDTO> getAllCustomerWithCompany(int company) {
-		List<CustomerDTO> list = new ArrayList<>();
+	public List<Customer> getAllCustomerWithCompany(int company) {
+		List<Customer> list = new ArrayList<>();
 		for (Customer customer : customerDao.findAll()){
 			if(customer.getCompany().getId()==company){
 				list.add(customer);

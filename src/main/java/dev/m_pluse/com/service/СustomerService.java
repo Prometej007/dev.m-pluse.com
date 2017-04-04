@@ -17,6 +17,6 @@ public interface —ustomerService {
 
 	void add—ustomer(—ustomerRegistrationDTO customerRegistration);
 
-	List<CustomerDTO> getAllCustomerWithCompany(int company);
+	List<Customer> getAllCustomerWithCompany(int company);
 
 }

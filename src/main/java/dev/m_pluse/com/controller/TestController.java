@@ -23,21 +23,21 @@ public class TestController {
 		return "home";
 	}
 
-	@RequestMapping("govno")
-	public String govno() {
-
-		System.out.println("krijan govno");
-		developerService.createDeveloper("anazariks@gmail.com", Position.ROLE_JUNIOR, null);
-
-		return "redirect:/";
-	}
-
-	@RequestMapping("invite{id}")
-	public String invite(@PathVariable String id) {
-		developerService.registrationDeveloper(id, "1", "1", LocalDate.now(), "krijan", "govno");
-		System.out.println("govno+++++++++++++++++++++++++++++++++++++++++++++++++ [ " + id + " ] ");
-
-		return "redirect:/";
-	}
+//	@RequestMapping("govno")
+//	public String govno() {
+//
+//		System.out.println("krijan govno");
+//		developerService.createDeveloper("anazariks@gmail.com", Position.ROLE_JUNIOR, 2);
+//
+//		return "redirect:/";
+//	}
+//
+//	@RequestMapping("invite{id}")
+//	public String invite(@PathVariable String id) {
+//		developerService.registrationDeveloper(id, "1", "1", LocalDate.now(), "krijan", "govno");
+//		System.out.println("govno+++++++++++++++++++++++++++++++++++++++++++++++++ [ " + id + " ] ");
+//
+//		return "redirect:/";
+//	}
 
 }
