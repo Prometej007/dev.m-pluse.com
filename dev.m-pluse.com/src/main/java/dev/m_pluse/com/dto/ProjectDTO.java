@@ -7,9 +7,9 @@ public class ProjectDTO {
 	private int id;
 	private String name;
 
-	private CompanyDTO company;
+	private String company;
 
-	private DepartmentDTO department;
+	private String department;
 
 	private TechnicalSpecificationDTO technicalSpecification;
 	private LocalDate startDate;
@@ -24,7 +24,7 @@ public class ProjectDTO {
 		super();
 	}
 
-	public ProjectDTO(int id, String name, CompanyDTO company, DepartmentDTO department,
+	public ProjectDTO(int id, String name, String company, String department,
 			TechnicalSpecificationDTO technicalSpecification, LocalDate startDate, LocalDate endDate,
 			List<TaskDTO> taskList, List<ResourceDTO> resource, boolean ready) {
 		super();
@@ -48,11 +48,11 @@ public class ProjectDTO {
 		return name;
 	}
 
-	public CompanyDTO getCompany() {
+	public String getCompany() {
 		return company;
 	}
 
-	public DepartmentDTO getDepartment() {
+	public String getDepartment() {
 		return department;
 	}
 
@@ -88,11 +88,11 @@ public class ProjectDTO {
 		this.name = name;
 	}
 
-	public void setCompany(CompanyDTO company) {
+	public void setCompany(String company) {
 		this.company = company;
 	}
 
-	public void setDepartment(DepartmentDTO department) {
+	public void setDepartment(String department) {
 		this.department = department;
 	}
 

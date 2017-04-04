@@ -3,13 +3,13 @@ package dev.m_pluse.com.dto;
 public class TechnicalSpecificationDTO {
 	private int id;
 
-	private ResourceDTO fileSpecification;
+	private String fileSpecification;
 
 	public TechnicalSpecificationDTO() {
 		super();
 	}
 
-	public TechnicalSpecificationDTO(int id, ResourceDTO fileSpecification) {
+	public TechnicalSpecificationDTO(int id, String fileSpecification) {
 		super();
 		this.id = id;
 		this.fileSpecification = fileSpecification;
@@ -19,7 +19,7 @@ public class TechnicalSpecificationDTO {
 		return id;
 	}
 
-	public ResourceDTO getFileSpecification() {
+	public String getFileSpecification() {
 		return fileSpecification;
 	}
 
@@ -27,7 +27,7 @@ public class TechnicalSpecificationDTO {
 		this.id = id;
 	}
 
-	public void setFileSpecification(ResourceDTO fileSpecification) {
+	public void setFileSpecification(String fileSpecification) {
 		this.fileSpecification = fileSpecification;
 	}
 

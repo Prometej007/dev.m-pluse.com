@@ -7,7 +7,7 @@ public class TaskDTO {
 
 	private List<DeveloperDTO> developers;
 
-	private ProjectDTO project;
+	private String project;
 
 	private boolean inProces;
 
@@ -15,7 +15,7 @@ public class TaskDTO {
 
 	}
 
-	public TaskDTO(int id, List<DeveloperDTO> developers, ProjectDTO project, boolean inProces) {
+	public TaskDTO(int id, List<DeveloperDTO> developers, String project, boolean inProces) {
 		super();
 		this.id = id;
 		this.developers = developers;
@@ -31,7 +31,7 @@ public class TaskDTO {
 		return developers;
 	}
 
-	public ProjectDTO getProject() {
+	public String getProject() {
 		return project;
 	}
 
@@ -47,7 +47,7 @@ public class TaskDTO {
 		this.developers = developers;
 	}
 
-	public void setProject(ProjectDTO project) {
+	public void setProject(String project) {
 		this.project = project;
 	}
 

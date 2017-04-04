@@ -12,7 +12,7 @@ public class SessionDTO {
 
 	private ResourceDTO resource;
 
-	private ProjectDTO project;
+	private String project;
 
 	private DeveloperDTO developer;
 
@@ -21,7 +21,7 @@ public class SessionDTO {
 	}
 
 	public SessionDTO(int id, LocalDateTime startSession, LocalDateTime finishSession, String report,
-			ResourceDTO resource, ProjectDTO project, DeveloperDTO developer) {
+			ResourceDTO resource, String project, DeveloperDTO developer) {
 		super();
 		this.id = id;
 		this.startSession = startSession;
@@ -52,7 +52,7 @@ public class SessionDTO {
 		return resource;
 	}
 
-	public ProjectDTO getProject() {
+	public String getProject() {
 		return project;
 	}
 
@@ -80,7 +80,7 @@ public class SessionDTO {
 		this.resource = resource;
 	}
 
-	public void setProject(ProjectDTO project) {
+	public void setProject(String project) {
 		this.project = project;
 	}
 

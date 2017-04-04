@@ -1,13 +1,11 @@
 package dev.m_pluse.com.dto;
 
-import dev.m_pluse.com.entity.Company;
-
 public class CustomerDTO {
 	private int id;
 	private String lastName;
 	private String FirstName;
 
-	private Company company;
+	private String company;
 	private String position;
 	private String phoneNumber;
 
@@ -15,8 +13,7 @@ public class CustomerDTO {
 		super();
 	}
 
-	public CustomerDTO(int id, String lastName, String firstName, Company company, String position,
-			String phoneNumber) {
+	public CustomerDTO(int id, String lastName, String firstName, String company, String position, String phoneNumber) {
 		super();
 		this.id = id;
 		this.lastName = lastName;
@@ -38,7 +35,7 @@ public class CustomerDTO {
 		return FirstName;
 	}
 
-	public Company getCompany() {
+	public String getCompany() {
 		return company;
 	}
 
@@ -62,7 +59,7 @@ public class CustomerDTO {
 		FirstName = firstName;
 	}
 
-	public void setCompany(Company company) {
+	public void setCompany(String company) {
 		this.company = company;
 	}
 

@@ -14,7 +14,7 @@ public class DeveloperDTO {
 	private LocalDate dateOfBirth;
 	private LocalDate dateOfEmployment;
 
-	private DepartmentDTO department;
+	private String department;
 	private String position;
 
 	private List<TaskDTO> task;
@@ -26,7 +26,7 @@ public class DeveloperDTO {
 	}
 
 	public DeveloperDTO(int id, String login, String password, String email, String firstName, String lastName,
-			LocalDate dateOfBirth, LocalDate dateOfEmployment, DepartmentDTO department, String position,
+			LocalDate dateOfBirth, LocalDate dateOfEmployment, String department, String position,
 			List<TaskDTO> task, List<SessionDTO> sessions) {
 		super();
 		this.id = id;
@@ -75,7 +75,7 @@ public class DeveloperDTO {
 		return dateOfEmployment;
 	}
 
-	public DepartmentDTO getDepartment() {
+	public String getDepartment() {
 		return department;
 	}
 
@@ -123,7 +123,7 @@ public class DeveloperDTO {
 		this.dateOfEmployment = dateOfEmployment;
 	}
 
-	public void setDepartment(DepartmentDTO department) {
+	public void setDepartment(String department) {
 		this.department = department;
 	}
 
