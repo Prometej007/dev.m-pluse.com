@@ -5,7 +5,7 @@ import java.util.List;
 public class TaskDTO {
 	private int id;
 
-	private List<DeveloperDTO> developers;
+	private List<Integer> developers;
 
 	private String project;
 
@@ -15,7 +15,7 @@ public class TaskDTO {
 
 	}
 
-	public TaskDTO(int id, List<DeveloperDTO> developers, String project, boolean inProces) {
+	public TaskDTO(int id, List<Integer> developers, String project, boolean inProces) {
 		super();
 		this.id = id;
 		this.developers = developers;
@@ -27,7 +27,7 @@ public class TaskDTO {
 		return id;
 	}
 
-	public List<DeveloperDTO> getDevelopers() {
+	public List<Integer> getDevelopers() {
 		return developers;
 	}
 
@@ -43,7 +43,7 @@ public class TaskDTO {
 		this.id = id;
 	}
 
-	public void setDevelopers(List<DeveloperDTO> developers) {
+	public void setDevelopers(List<Integer> developers) {
 		this.developers = developers;
 	}
 
