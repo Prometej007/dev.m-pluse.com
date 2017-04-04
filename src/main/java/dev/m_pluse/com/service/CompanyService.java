@@ -15,5 +15,5 @@ public interface CompanyService {
 
 	void createCompany(String street, String name);
 
-	List<>
+	
 }
