@@ -1,5 +1,6 @@
 package dev.m_pluse.com.service.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +43,9 @@ public class CompanyServiceImpl implements CompanyService {
 	 * @param customer
 	 *            - list
 	 */
-	public void createCompany(String street, String name, List<Customer> customer) {
+	public void createCompany(String street, String name) {
 		Company company = new Company();
-		company.setCustomer(customer);
+		company.setCustomer(new ArrayList<Customer>());
 		company.setName(name);
 		company.setStreet(street);
 		save(company);

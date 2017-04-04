@@ -28,6 +28,7 @@ public class TestController {
 
 		System.out.println("krijan govno");
 		developerService.createDeveloper("anazariks@gmail.com", Position.ROLE_JUNIOR, null);
+
 		return "redirect:/";
 	}
 

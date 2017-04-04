@@ -2,6 +2,7 @@ package dev.m_pluse.com.service;
 
 import java.util.List;
 
+import dev.m_pluse.com.dto.ChangeDeveloperInNewDepartmentDTO;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
 
@@ -16,7 +17,6 @@ public interface DepartmentService {
 
 	public void createDepartment(String name, String email, List<Developer> develoupers);
 
-	public void addDeveloperInDepartment(Department department, Developer developer);
+	public void changeDeveloperInNewDepartment(ChangeDeveloperInNewDepartmentDTO object);
 
-	public void addDevelopersInDepartment(Department department, List<Developer> developers);
 }

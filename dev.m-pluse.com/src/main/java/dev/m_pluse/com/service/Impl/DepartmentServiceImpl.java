@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.m_pluse.com.dao.DepartmentDao;
+import dev.m_pluse.com.dao.DeveloperDao;
+import dev.m_pluse.com.dto.ChangeDeveloperInNewDepartmentDTO;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.service.DepartmentService;
@@ -16,6 +18,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Autowired
 	private DepartmentDao departmentDao;
+	@Autowired
+	private DeveloperDao developerDao;
 
 	public void save(Department department) {
 		departmentDao.save(department);
@@ -52,34 +56,22 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	/**
 	 * 
-	 * @param department
-	 * @param developer
+	 * @param int
+	 *            idDepartment
+	 * @param int
+	 *            idDeveloper
 	 */
-	public void addDeveloperInDepartment(Department department, Developer developer) {
+	public void changeDeveloperInNewDepartment(ChangeDeveloperInNewDepartmentDTO object) {
+		Department department = departmentDao.findOne(object.getIdDepartment());
 		List<Developer> list = department.getDeveloupers();
 		if (list != null) {
-			list.add(developer);
+			list.add(developerDao.findOne(object.getIdDeveloper()));
+
 		} else {
 			list = new ArrayList<Developer>();
-			list.add(developer);
+			list.add(developerDao.findOne(object.getIdDeveloper()));
 		}
-		save(department);
-
-	}
-
-	/**
-	 * 
-	 * @param department
-	 * @param developers
-	 */
-	public void addDevelopersInDepartment(Department department, List<Developer> developers) {
-		List<Developer> list = department.getDeveloupers();
-		if (list != null) {
-			list.addAll(developers);
-		} else {
-			list = new ArrayList<Developer>();
-			list.addAll(developers);
-		}
+		department.setDeveloupers(list);
 		save(department);
 
 	}

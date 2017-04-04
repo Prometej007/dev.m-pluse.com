@@ -7,7 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dev.m_pluse.com.dao.DepartmentDao;
 import dev.m_pluse.com.dao.DeveloperDao;
+import dev.m_pluse.com.dto.DeveloperRegistrationDTO;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Position;
@@ -26,6 +28,9 @@ public class DeveloperServiceImpl implements DeveloperService {
 	private UuidService uuidService;
 	@Autowired
 	private MailSenderService mailSenderService;
+
+	@Autowired
+	private DepartmentDao departmentDao;
 
 	public void save(Developer developer) {
 		developerDao.save(developer);
@@ -101,11 +106,11 @@ public class DeveloperServiceImpl implements DeveloperService {
 	 * @param position
 	 * @param department
 	 */
-	public void createDeveloper(String email, Position position, Department department) {
+	public void createDeveloper(String email, Position position, int idDepartment) {
 		Developer developer = new Developer();
 		developer.setEmail(email);
 		developer.setPosition(position);
-		developer.setDepartment(department);
+		developer.setDepartment(departmentDao.findOne(idDepartment));
 		save(developer);
 		mailSenderService.inviteDeveloper(developer);
 	}
@@ -119,18 +124,17 @@ public class DeveloperServiceImpl implements DeveloperService {
 	 * @param firstName
 	 * @param lastName
 	 */
-	public void registrationDeveloper(String id, String login, String password, LocalDate dateOfBirth, String firstName,
-			String lastName) {
+	public void registrationDeveloper(DeveloperRegistrationDTO developerDTO) {
 
-		Developer developer = findOneByUuid(id, UuidType.REGISTRATION_DEVELOPER);
-		developer.setLogin(login);
-		developer.setPassword(password);
-		developer.setDateOfBirth(dateOfBirth);
-		developer.setFirstName(firstName);
-		developer.setLastName(lastName);
+		Developer developer = findOneByUuid(developerDTO.getId(), UuidType.REGISTRATION_DEVELOPER);
+		developer.setLogin(developerDTO.getLogin());
+		developer.setPassword(developerDTO.getPassword());
+		developer.setDateOfBirth(developerDTO.getDateOfBirth());
+		developer.setFirstName(developerDTO.getFirstName());
+		developer.setLastName(developerDTO.getLastName());
 		developer.setDateOfEmployment(LocalDate.now());
 		save(developer);
-		uuidService.delete(uuidService.findOneByUuid(id, UuidType.REGISTRATION_DEVELOPER).getId());
+		uuidService.delete(uuidService.findOneByUuid(developerDTO.getId(), UuidType.REGISTRATION_DEVELOPER).getId());
 	}
 
 	/**

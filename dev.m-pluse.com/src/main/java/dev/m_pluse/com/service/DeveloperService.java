@@ -1,8 +1,8 @@
 package dev.m_pluse.com.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
+import dev.m_pluse.com.dto.DeveloperRegistrationDTO;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Position;
@@ -25,10 +25,9 @@ public interface DeveloperService {
 
 	public List<Developer> allDeveloperOfTheDepartmentWithPosition(Department department, Position position);
 
-	public void createDeveloper(String email, Position position, Department department);
+	public void createDeveloper(String email, Position position, int idDepartment);
 
-	public void registrationDeveloper(String id, String login, String password, LocalDate dateOfBirth, String firstName,
-			String lastName);
+	public void registrationDeveloper(DeveloperRegistrationDTO developerDTO);
 
 	public void updatePrositionDeveloper(Developer developer, Position position);
 
