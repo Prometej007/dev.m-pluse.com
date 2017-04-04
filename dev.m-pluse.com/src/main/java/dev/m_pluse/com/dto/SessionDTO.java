@@ -10,18 +10,16 @@ public class SessionDTO {
 
 	private String report;
 
-	private ResourceDTO resource;
+	private String resource;
 
 	private String project;
-
-	private DeveloperDTO developer;
 
 	public SessionDTO() {
 		super();
 	}
 
 	public SessionDTO(int id, LocalDateTime startSession, LocalDateTime finishSession, String report,
-			ResourceDTO resource, String project, DeveloperDTO developer) {
+			String resource, String project) {
 		super();
 		this.id = id;
 		this.startSession = startSession;
@@ -29,7 +27,7 @@ public class SessionDTO {
 		this.report = report;
 		this.resource = resource;
 		this.project = project;
-		this.developer = developer;
+
 	}
 
 	public int getId() {
@@ -48,16 +46,12 @@ public class SessionDTO {
 		return report;
 	}
 
-	public ResourceDTO getResource() {
+	public String getResource() {
 		return resource;
 	}
 
 	public String getProject() {
 		return project;
-	}
-
-	public DeveloperDTO getDeveloper() {
-		return developer;
 	}
 
 	public void setId(int id) {
@@ -76,16 +70,12 @@ public class SessionDTO {
 		this.report = report;
 	}
 
-	public void setResource(ResourceDTO resource) {
+	public void setResource(String resource) {
 		this.resource = resource;
 	}
 
 	public void setProject(String project) {
 		this.project = project;
-	}
-
-	public void setDeveloper(DeveloperDTO developer) {
-		this.developer = developer;
 	}
 
 }

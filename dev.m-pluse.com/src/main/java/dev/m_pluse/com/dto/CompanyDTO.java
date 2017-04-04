@@ -6,7 +6,7 @@ public class CompanyDTO {
 	private int id;
 	private String name;
 
-	private List<ProjectDTO> project;
+	private List<String> project;
 
 	private List<CustomerDTO> customer;
 	private String street;
@@ -15,7 +15,7 @@ public class CompanyDTO {
 		super();
 	}
 
-	public CompanyDTO(int id, String name, List<ProjectDTO> project, List<CustomerDTO> customer, String street) {
+	public CompanyDTO(int id, String name, List<String> project, List<CustomerDTO> customer, String street) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -44,24 +44,24 @@ public class CompanyDTO {
 		this.name = name;
 	}
 
-	public List<ProjectDTO> getProject() {
+	public List<String> getProject() {
 		return project;
+	}
+
+	public void setProject(List<String> project) {
+		this.project = project;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
 	public List<CustomerDTO> getCustomer() {
 		return customer;
 	}
 
-	public void setProject(List<ProjectDTO> project) {
-		this.project = project;
-	}
-
 	public void setCustomer(List<CustomerDTO> customer) {
 		this.customer = customer;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
 	}
 
 }

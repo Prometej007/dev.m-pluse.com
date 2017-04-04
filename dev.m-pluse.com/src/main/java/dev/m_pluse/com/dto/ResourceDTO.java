@@ -7,7 +7,6 @@ public class ResourceDTO {
 	private int id;
 	private String name;
 	private String type;
-	private ProjectDTO project;
 	private String path;
 	private List<TechnicalSpecificationDTO> technicalSpecifications;
 
@@ -15,13 +14,12 @@ public class ResourceDTO {
 		super();
 	}
 
-	public ResourceDTO(int id, String name, String type, ProjectDTO project, String path,
+	public ResourceDTO(int id, String name, String type, String path,
 			List<TechnicalSpecificationDTO> technicalSpecifications) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.type = type;
-		this.project = project;
 		this.path = path;
 		this.technicalSpecifications = technicalSpecifications;
 	}
@@ -38,9 +36,6 @@ public class ResourceDTO {
 		return type;
 	}
 
-	public ProjectDTO getProject() {
-		return project;
-	}
 
 	public String getPath() {
 		return path;
@@ -62,9 +57,6 @@ public class ResourceDTO {
 		this.type = type;
 	}
 
-	public void setProject(ProjectDTO project) {
-		this.project = project;
-	}
 
 	public void setPath(String path) {
 		this.path = path;
