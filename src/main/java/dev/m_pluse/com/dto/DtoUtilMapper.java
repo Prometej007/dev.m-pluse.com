@@ -21,9 +21,25 @@ public class DtoUtilMapper {
 				customerToCustomerDTO(company.getCustomer()), company.getStreet());
 	}
 
+	public List<CompanyDTO> companyToCompanyDTO(List<Company> company) {
+		List<CompanyDTO> list = new ArrayList<CompanyDTO>();
+		for (Company obj : company) {
+			list.add(companyToCompanyDTO(obj));
+		}
+		return list;
+	}
+
 	public DepartmentDTO departmentToDepartmentDTO(Department department) {
 		return new DepartmentDTO(department.getId(), department.getName(), department.getEmail(),
 				developerToDeveloperDTO(department.getDeveloupers()), projectToProjectDTO(department.getProjects()));
+	}
+
+	public List<DepartmentDTO> departmentToDepartmentDTO(List<Department> department) {
+		List<DepartmentDTO> list = new ArrayList<DepartmentDTO>();
+		for (Department obj : department) {
+			list.add(departmentToDepartmentDTO(obj));
+		}
+		return list;
 	}
 
 	public ProjectDTO projectToProjectDTO(Project project) {
@@ -46,6 +62,15 @@ public class DtoUtilMapper {
 			TechnicalSpecification technicalSpecification) {
 		return new TechnicalSpecificationDTO(technicalSpecification.getId(),
 				technicalSpecification.getFileSpecification().getPath());
+	}
+
+	public List<TechnicalSpecificationDTO> technicalSpecificationToTechnicalSpecificationDTO(
+			List<TechnicalSpecification> technicalSpecification) {
+		List<TechnicalSpecificationDTO> list = new ArrayList<TechnicalSpecificationDTO>();
+		for (TechnicalSpecification obj : technicalSpecification) {
+			list.add(technicalSpecificationToTechnicalSpecificationDTO(obj));
+		}
+		return list;
 	}
 
 	public ResourceDTO resourceToResourceDTO(Resource resource) {
