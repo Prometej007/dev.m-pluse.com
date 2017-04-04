@@ -2,9 +2,6 @@ package dev.m_pluse.com.dto;
 
 import java.util.List;
 
-import dev.m_pluse.com.entity.Customer;
-import dev.m_pluse.com.entity.Project;
-
 public class CompanyDTO {
 	private int id;
 	private String name;
@@ -18,7 +15,7 @@ public class CompanyDTO {
 		super();
 	}
 
-	public CompanyDTO(int id, String name, List<Project> project, List<Customer> customer, String street) {
+	public CompanyDTO(int id, String name, List<ProjectDTO> project, List<CustomerDTO> customer, String street) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -35,14 +32,6 @@ public class CompanyDTO {
 		return name;
 	}
 
-	public List<Project> getProject() {
-		return project;
-	}
-
-	public List<Customer> getCustomer() {
-		return customer;
-	}
-
 	public String getStreet() {
 		return street;
 	}
@@ -55,11 +44,19 @@ public class CompanyDTO {
 		this.name = name;
 	}
 
-	public void setProject(List<Project> project) {
+	public List<ProjectDTO> getProject() {
+		return project;
+	}
+
+	public List<CustomerDTO> getCustomer() {
+		return customer;
+	}
+
+	public void setProject(List<ProjectDTO> project) {
 		this.project = project;
 	}
 
-	public void setCustomer(List<Customer> customer) {
+	public void setCustomer(List<CustomerDTO> customer) {
 		this.customer = customer;
 	}
 
