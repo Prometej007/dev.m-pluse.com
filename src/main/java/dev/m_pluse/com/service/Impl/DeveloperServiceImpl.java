@@ -111,6 +111,7 @@ public class DeveloperServiceImpl implements DeveloperService {
 		developer.setEmail(email);
 		developer.setPosition(position);
 		developer.setDepartment(departmentDao.findOne(idDepartment));
+		developer.setEnabled(false);
 		save(developer);
 		mailSenderService.inviteDeveloper(developer);
 	}
@@ -133,6 +134,7 @@ public class DeveloperServiceImpl implements DeveloperService {
 		developer.setFirstName(developerDTO.getFirstName());
 		developer.setLastName(developerDTO.getLastName());
 		developer.setDateOfEmployment(LocalDate.now());
+		developer.setEnabled(true);
 		save(developer);
 		uuidService.delete(uuidService.findOneByUuid(developerDTO.getId(), UuidType.REGISTRATION_DEVELOPER).getId());
 	}
@@ -173,6 +175,17 @@ public class DeveloperServiceImpl implements DeveloperService {
 		developer.setPosition(position);
 		save(developer);
 
+	}
+
+	@Override
+	public Developer findOneByLogin(String login) {
+		for (Developer developer : findAll()) {
+			if (developer.getLogin().equals(login)) {
+
+				return developer;
+			}
+		}
+		return null;
 	}
 
 }

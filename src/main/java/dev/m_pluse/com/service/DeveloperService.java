@@ -21,6 +21,8 @@ public interface DeveloperService {
 
 	public Developer findOneByEmail(String email);
 
+	public Developer findOneByLogin(String login);
+
 	public List<Developer> allDeveloperOfTheDepartment(Department department);
 
 	public List<Developer> allDeveloperOfTheDepartmentWithPosition(Department department, Position position);
