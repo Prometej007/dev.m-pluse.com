@@ -1,6 +1,6 @@
 package dev.m_pluse.com.dto;
 
-public class ÑustomerRegistrationDTO {
+public class CustomerRegistrationDTO {
 
 	private String lastName;
 	private String FirstName;
@@ -8,11 +8,11 @@ public class ÑustomerRegistrationDTO {
 	private String position;
 	private String phoneNumber;
 
-	public ÑustomerRegistrationDTO() {
+	public CustomerRegistrationDTO() {
 		super();
 	}
 
-	public ÑustomerRegistrationDTO(String lastName, String firstName, int company, String position,
+	public CustomerRegistrationDTO(String lastName, String firstName, int company, String position,
 			String phoneNumber) {
 		super();
 		this.lastName = lastName;

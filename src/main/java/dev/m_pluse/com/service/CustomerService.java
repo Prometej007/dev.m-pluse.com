@@ -2,7 +2,7 @@ package dev.m_pluse.com.service;
 
 import java.util.List;
 
-import dev.m_pluse.com.dto.—ustomerRegistrationDTO;
+import dev.m_pluse.com.dto.CustomerRegistrationDTO;
 import dev.m_pluse.com.entity.Customer;
 
 public interface CustomerService {
@@ -14,7 +14,7 @@ public interface CustomerService {
 
 	void delete(int id);
 
-	void add—ustomer(—ustomerRegistrationDTO customerRegistration);
+	void add—ustomer(CustomerRegistrationDTO customerRegistration);
 
 	List<Customer> getAllCustomerWithCompany(int company);
 

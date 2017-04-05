@@ -1,9 +1,18 @@
 package dev.m_pluse.com.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.m_pluse.com.dto.CompanyDTO;
+import dev.m_pluse.com.dto.DtoUtilMapper;
+import dev.m_pluse.com.entity.Company;
+import dev.m_pluse.com.entity.Customer;
 import dev.m_pluse.com.service.CompanyService;
 import dev.m_pluse.com.service.CustomerService;
 import dev.m_pluse.com.service.DepartmentService;
@@ -38,4 +47,24 @@ public class CompanyController {
 	private TechnicalSpecificationService technicalSpecificationService;
 	@Autowired
 	private UuidService uuidService;
+	
+	@RequestMapping(value="add",method=RequestMethod.POST)
+	public List<CompanyDTO> addCompany(@RequestParam("street") String street,@RequestParam("name") String name){
+		companyService.createCompany(street, name);
+		return DtoUtilMapper.companyToCompanyDTO(companyService.findAll());
+	}
+	@RequestMapping(value="delete",method=RequestMethod.DELETE)
+	public List<CompanyDTO> addCompany(@RequestBody String id){
+		companyService.delete(Integer.parseInt(id));;
+		return DtoUtilMapper.companyToCompanyDTO(companyService.findAll());
+	}
+	@RequestMapping(value="load",method=RequestMethod.PUT)
+	public List<CompanyDTO> addCompany(){
+		return DtoUtilMapper.companyToCompanyDTO(companyService.findAll());
+	}
+	@RequestMapping(value="allCustomersWithCompany",method=RequestMethod.PUT)
+	public List<Customer> allCompany(@RequestBody String id){
+		
+		return customerService.getAllCustomerWithCompany(Integer.parseInt(id));
+	}
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.m_pluse.com.dto.ChangeDeveloperInNewDepartmentDTO;
 import dev.m_pluse.com.dto.DepartmentDTO;
 import dev.m_pluse.com.dto.DtoUtilMapper;
-import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.service.CompanyService;
 import dev.m_pluse.com.service.CustomerService;
 import dev.m_pluse.com.service.DepartmentService;
@@ -60,7 +59,7 @@ public class DepartmentController {
 		return DtoUtilMapper.departmentToDepartmentDTO(departmentService.findAll());
 	}
 
-	@RequestMapping(value = "load", method = RequestMethod.POST)
+	@RequestMapping(value = "load", method = RequestMethod.PUT)
 	public List<DepartmentDTO> loadDepartments() {
 
 		return DtoUtilMapper.departmentToDepartmentDTO(departmentService.findAll());
