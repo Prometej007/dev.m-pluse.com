@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dev.m_pluse.com.constants.Configuration;
 import dev.m_pluse.com.dao.ResourceDao;
+import dev.m_pluse.com.dto.DtoUtilMapper;
+import dev.m_pluse.com.entity.Position;
 import dev.m_pluse.com.entity.Project;
 import dev.m_pluse.com.entity.Resource;
 import dev.m_pluse.com.entity.ResourceType;
@@ -106,24 +108,22 @@ public class ResourceServiceImpl implements ResourceService {
 		return list;
 	}
 
-	
 	public List<Resource> selectAllDevResourceImg() {
 		List<Resource> list = new ArrayList<Resource>();
 		for (Resource resource : resourceDao.findAll()) {
-			if(resource.getType().equals(ResourceType.DEVELOPER_IMG)
-					&& resource.getProject().getDepartment().getDeveloupers()!=null){
+			if (resource.getType().equals(ResourceType.DEVELOPER_IMG)
+					&& resource.getProject().getDepartment().getDeveloupers() != null) {
 				list.add(resource);
 			}
 		}
-		
+
 		return list;
 	}
 
 	public List<Resource> selectAllProjectResourceImg() {
 		List<Resource> list = new ArrayList<Resource>();
 		for (Resource resource : resourceDao.findAll()) {
-			if(resource.getType().equals(ResourceType.DEVELOPER_IMG)
-					&& resource.getProject()!=null){
+			if (resource.getType().equals(ResourceType.DEVELOPER_IMG) && resource.getProject() != null) {
 				list.add(resource);
 			}
 		}
@@ -141,12 +141,12 @@ public class ResourceServiceImpl implements ResourceService {
 							+ Configuration.NAME_PROJECT + "/" + "resources/" + name + "/" + uuid + "/"
 							+ multipartFile.getOriginalFilename()));
 		} catch (UnknownHostException e1) {
-			
+
 			e1.printStackTrace();
 		}
 
 		save(resource);
-		String path = System.getProperty("catalina.home") + "/resources/"+name+"/" + uuid + "/"
+		String path = System.getProperty("catalina.home") + "/resources/" + name + "/" + uuid + "/"
 				+ multipartFile.getOriginalFilename();
 
 		File file = new File(path);
@@ -161,17 +161,15 @@ public class ResourceServiceImpl implements ResourceService {
 
 	}
 
-
 	public List<Resource> searchFileByResourceType(ResourceType resourceType) {
 		List<Resource> list = new ArrayList<Resource>();
 		for (Resource resource : resourceDao.findAll()) {
-			if(resource.getType().equals(resourceType)){
+			if (resource.getType().equals(resourceType)) {
 				list.add(resource);
 			}
 		}
 		return list;
 	}
-
 
 	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type, Project project) {
 		Resource resource = null;
@@ -179,18 +177,18 @@ public class ResourceServiceImpl implements ResourceService {
 		String uuid = UUID.randomUUID().toString();
 
 		try {
-			resource = new Resource(name, type,project,
+			resource = new Resource(name, type, project,
 					new StringModification().overrideString(InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
-							+ Configuration.NAME_PROJECT + "/" + "resources/"+project.getName()+"/" + name + "/" + uuid + "/"
-							+ multipartFile.getOriginalFilename()));
+							+ Configuration.NAME_PROJECT + "/" + "resources/" + project.getName() + "/" + name + "/"
+							+ uuid + "/" + multipartFile.getOriginalFilename()));
 		} catch (UnknownHostException e1) {
-			
+
 			e1.printStackTrace();
 		}
 
 		save(resource);
-		String path = System.getProperty("catalina.home") + "/resources/"+project.getName()+"/"+name+"/" + uuid + "/"
-				+ multipartFile.getOriginalFilename();
+		String path = System.getProperty("catalina.home") + "/resources/" + project.getName() + "/" + name + "/" + uuid
+				+ "/" + multipartFile.getOriginalFilename();
 
 		File file = new File(path);
 
@@ -202,11 +200,17 @@ public class ResourceServiceImpl implements ResourceService {
 			System.out.println("error with file");
 		}
 
-		
 	}
 
+	public List<String> resourceTypeToString() {
 
+		List<String> strings = new ArrayList<>();
+		for (ResourceType resourceType : ResourceType.values()) {
+			strings.add(DtoUtilMapper.resourceType(resourceType));
+		}
 
+		return strings;
 
+	}
 
 }

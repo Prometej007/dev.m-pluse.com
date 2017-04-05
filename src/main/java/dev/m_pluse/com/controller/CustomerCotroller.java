@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.m_pluse.com.dto.CustomerDTO;
 import dev.m_pluse.com.dto.CustomerRegistrationDTO;
 import dev.m_pluse.com.dto.DtoUtilMapper;
-import dev.m_pluse.com.entity.Customer;
 import dev.m_pluse.com.service.CompanyService;
 import dev.m_pluse.com.service.CustomerService;
 import dev.m_pluse.com.service.DepartmentService;
