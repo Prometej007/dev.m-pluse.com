@@ -2,6 +2,7 @@ package dev.m_pluse.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import dev.m_pluse.com.service.CompanyService;
 import dev.m_pluse.com.service.CustomerService;
@@ -36,4 +37,16 @@ public class PagesController {
 	private TechnicalSpecificationService technicalSpecificationService;
 	@Autowired
 	private UuidService uuidService;
+	
+	
+	@RequestMapping({ "/", "home" })
+	public String home() {
+		return "home";
+	}
+	
+	@RequestMapping("loginpage")
+	public String loginpage() {
+		return "loginpage";
+	}
+	
 }

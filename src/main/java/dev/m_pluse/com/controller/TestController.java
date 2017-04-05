@@ -19,18 +19,6 @@ public class TestController {
 	@Autowired
 	public MailSenderService mailSenderService;
 
-	@RequestMapping({ "/", "home" })
-	public String home() {
-		return "home";
-	}
-	
-	@RequestMapping("loginpage")
-	public String loginpage() {
-		return "loginpage";
-	}
-	
-	
-
 	@RequestMapping("govno")
 	public String govno() {
 
