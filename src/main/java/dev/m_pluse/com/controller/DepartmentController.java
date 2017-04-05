@@ -1,9 +1,15 @@
 package dev.m_pluse.com.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.m_pluse.com.dto.DepartmentDTO;
+import dev.m_pluse.com.dto.DtoUtilMapper;
+import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.service.CompanyService;
 import dev.m_pluse.com.service.CustomerService;
 import dev.m_pluse.com.service.DepartmentService;
@@ -38,4 +44,14 @@ public class DepartmentController {
 	private TechnicalSpecificationService technicalSpecificationService;
 	@Autowired
 	private UuidService uuidService;
+	
+	
+	@RequestMapping(value="addDepartment",method=RequestMethod.POST)
+	public List<DepartmentDTO> addDepartment(Department department){
+		departmentService.save(department);
+		return  DtoUtilMapper.departmentToDepartmentDTO(departmentService.findAll());
+	}
+		
+	
+	
 }

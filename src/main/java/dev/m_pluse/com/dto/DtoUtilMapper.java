@@ -16,12 +16,12 @@ import dev.m_pluse.com.entity.Task;
 import dev.m_pluse.com.entity.TechnicalSpecification;
 
 public class DtoUtilMapper {
-	public CompanyDTO companyToCompanyDTO(Company company) {
+	public static CompanyDTO companyToCompanyDTO(Company company) {
 		return new CompanyDTO(company.getId(), company.getName(), projectToString(company.getProject()),
 				customerToCustomerDTO(company.getCustomer()), company.getStreet());
 	}
 
-	public List<CompanyDTO> companyToCompanyDTO(List<Company> company) {
+	public static List<CompanyDTO> companyToCompanyDTO(List<Company> company) {
 		List<CompanyDTO> list = new ArrayList<CompanyDTO>();
 		for (Company obj : company) {
 			list.add(companyToCompanyDTO(obj));
@@ -29,12 +29,12 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public DepartmentDTO departmentToDepartmentDTO(Department department) {
+	public static DepartmentDTO departmentToDepartmentDTO(Department department) {
 		return new DepartmentDTO(department.getId(), department.getName(), department.getEmail(),
 				developerToDeveloperDTO(department.getDeveloupers()), projectToProjectDTO(department.getProjects()));
 	}
 
-	public List<DepartmentDTO> departmentToDepartmentDTO(List<Department> department) {
+	public static List<DepartmentDTO> departmentToDepartmentDTO(List<Department> department) {
 		List<DepartmentDTO> list = new ArrayList<DepartmentDTO>();
 		for (Department obj : department) {
 			list.add(departmentToDepartmentDTO(obj));
@@ -42,7 +42,7 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public ProjectDTO projectToProjectDTO(Project project) {
+	public static ProjectDTO projectToProjectDTO(Project project) {
 		return new ProjectDTO(project.getId(), project.getName(), project.getCompany().getName(),
 				project.getDepartment().getName(),
 				technicalSpecificationToTechnicalSpecificationDTO(project.getTechnicalSpecification()),
@@ -50,7 +50,7 @@ public class DtoUtilMapper {
 				resourceToResourceDTO(project.getResource()), project.isReady());
 	}
 
-	public List<ProjectDTO> projectToProjectDTO(List<Project> project) {
+	public static List<ProjectDTO> projectToProjectDTO(List<Project> project) {
 		List<ProjectDTO> list = new ArrayList<ProjectDTO>();
 		for (Project obj : project) {
 			list.add(projectToProjectDTO(obj));
@@ -58,13 +58,13 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public TechnicalSpecificationDTO technicalSpecificationToTechnicalSpecificationDTO(
+	public static TechnicalSpecificationDTO technicalSpecificationToTechnicalSpecificationDTO(
 			TechnicalSpecification technicalSpecification) {
 		return new TechnicalSpecificationDTO(technicalSpecification.getId(),
 				technicalSpecification.getFileSpecification().getPath());
 	}
 
-	public List<TechnicalSpecificationDTO> technicalSpecificationToTechnicalSpecificationDTO(
+	public static List<TechnicalSpecificationDTO> technicalSpecificationToTechnicalSpecificationDTO(
 			List<TechnicalSpecification> technicalSpecification) {
 		List<TechnicalSpecificationDTO> list = new ArrayList<TechnicalSpecificationDTO>();
 		for (TechnicalSpecification obj : technicalSpecification) {
@@ -73,12 +73,12 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public ResourceDTO resourceToResourceDTO(Resource resource) {
+	public static ResourceDTO resourceToResourceDTO(Resource resource) {
 		return new ResourceDTO(resource.getId(), resource.getName(), resourceType(resource.getType()),
 				resource.getPath());
 	}
 
-	public List<ResourceDTO> resourceToResourceDTO(List<Resource> resource) {
+	public static List<ResourceDTO> resourceToResourceDTO(List<Resource> resource) {
 		List<ResourceDTO> list = new ArrayList<>();
 		for (Resource obj : resource) {
 			list.add(resourceToResourceDTO(obj));
@@ -86,12 +86,12 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public SessionDTO sessionToSessionDTO(Session session) {
+	public static SessionDTO sessionToSessionDTO(Session session) {
 		return new SessionDTO(session.getId(), session.getStartSession(), session.getFinishSession(),
 				session.getReport(), session.getResource().getPath(), session.getProject().getName());
 	}
 
-	public List<SessionDTO> sessionToSessionDTO(List<Session> session) {
+	public static List<SessionDTO> sessionToSessionDTO(List<Session> session) {
 		List<SessionDTO> list = new ArrayList<SessionDTO>();
 		for (Session obj : session) {
 			list.add(sessionToSessionDTO(obj));
@@ -99,14 +99,14 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public DeveloperDTO developerToDeveloperDTO(Developer developer) {
+	public static DeveloperDTO developerToDeveloperDTO(Developer developer) {
 		return new DeveloperDTO(developer.getId(), developer.getName(), developer.getPassword(), developer.getEmail(),
 				developer.getFirstName(), developer.getLastName(), developer.getDateOfBirth(),
 				developer.getDateOfEmployment(), developer.getDepartment().getName(), position(developer.getPosition()),
 				taskToTaskDTO(developer.getTask()), sessionToSessionDTO(developer.getSessions()));
 	}
 
-	public List<DeveloperDTO> developerToDeveloperDTO(List<Developer> developer) {
+	public static List<DeveloperDTO> developerToDeveloperDTO(List<Developer> developer) {
 		List<DeveloperDTO> list = new ArrayList<DeveloperDTO>();
 		for (Developer obj : developer) {
 			developerToDeveloperDTO(obj);
@@ -114,12 +114,12 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public TaskDTO taskToTaskDTO(Task task) {
+	public static TaskDTO taskToTaskDTO(Task task) {
 		return new TaskDTO(task.getId(), developerTOIndeterArray(task.getDevelopers()), task.getProject().getName(),
 				task.isInProces());
 	}
 
-	public List<TaskDTO> taskToTaskDTO(List<Task> task) {
+	public static List<TaskDTO> taskToTaskDTO(List<Task> task) {
 		List<TaskDTO> list = new ArrayList<>();
 		for (Task obj : task) {
 			list.add(taskToTaskDTO(obj));
@@ -127,7 +127,7 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public List<Integer> developerTOIndeterArray(List<Developer> developers) {
+	public static List<Integer> developerTOIndeterArray(List<Developer> developers) {
 		List<Integer> list = new ArrayList<>();
 		for (Developer obj : developers) {
 			list.add(obj.getId());
@@ -135,7 +135,7 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public List<String> projectToString(List<Project> project) {
+	public static List<String> projectToString(List<Project> project) {
 		List<String> list = new ArrayList<String>();
 		for (Project obj : project) {
 			list.add(obj.getName());
@@ -143,12 +143,12 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public CustomerDTO customerToCustomerDTO(Customer customer) {
+	public static CustomerDTO customerToCustomerDTO(Customer customer) {
 		return new CustomerDTO(customer.getId(), customer.getLastName(), customer.getFirstName(),
 				customer.getCompany().getName(), customer.getPosition(), customer.getPhoneNumber());
 	}
 
-	public List<CustomerDTO> customerToCustomerDTO(List<Customer> customer) {
+	public static List<CustomerDTO> customerToCustomerDTO(List<Customer> customer) {
 		List<CustomerDTO> list = new ArrayList<>();
 		for (Customer obj : customer) {
 			list.add(customerToCustomerDTO(obj));
@@ -156,7 +156,7 @@ public class DtoUtilMapper {
 		return list;
 	}
 
-	public String position(Position position) {
+	public static String position(Position position) {
 
 		switch (position) {
 		case ROLE_ONE_OF_BOSS:
@@ -183,7 +183,7 @@ public class DtoUtilMapper {
 		return null;
 	}
 
-	public Position getPosition(String position) {
+	public static Position getPosition(String position) {
 
 		switch (position) {
 		case "BIG BOSS":
@@ -211,7 +211,7 @@ public class DtoUtilMapper {
 
 	}
 
-	public String resourceType(ResourceType resourceType) {
+	public static String resourceType(ResourceType resourceType) {
 
 		switch (resourceType) {
 		case DECELOPER_RESOURCE:
@@ -238,7 +238,7 @@ public class DtoUtilMapper {
 		return null;
 	}
 
-	public ResourceType getResourceType(String resourcesType) {
+	public static ResourceType getResourceType(String resourcesType) {
 
 		switch (resourcesType) {
 		case "Developer resource":
