@@ -23,6 +23,13 @@ public class TestController {
 	public String home() {
 		return "home";
 	}
+	
+	@RequestMapping("loginpage")
+	public String loginpage() {
+		return "loginpage";
+	}
+	
+	
 
 	@RequestMapping("govno")
 	public String govno() {
@@ -36,7 +43,8 @@ public class TestController {
 	@RequestMapping("invite{id}")
 	public String invite(@PathVariable String id) {
 		developerService.registrationDeveloper(
-				new DeveloperRegistrationDTO(id, "krijanloh", "govno", LocalDate.now(), "krijan", "loh"));
+				new DeveloperRegistrationDTO(id, "1", "govno", LocalDate.now(), "krijan", "loh"));
+		
 		System.out.println("govno+++++++++++++++++++++++++++++++++++++++++++++++++ [ " + id + " ] ");
 
 		return "redirect:/";

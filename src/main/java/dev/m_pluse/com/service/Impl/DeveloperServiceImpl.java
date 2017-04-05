@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import dev.m_pluse.com.dao.DepartmentDao;
@@ -28,6 +29,9 @@ public class DeveloperServiceImpl implements DeveloperService {
 	private UuidService uuidService;
 	@Autowired
 	private MailSenderService mailSenderService;
+
+	@Autowired
+	private BCryptPasswordEncoder encoder;
 
 	@Autowired
 	private DepartmentDao departmentDao;
@@ -129,7 +133,7 @@ public class DeveloperServiceImpl implements DeveloperService {
 
 		Developer developer = findOneByUuid(developerDTO.getId(), UuidType.REGISTRATION_DEVELOPER);
 		developer.setLogin(developerDTO.getLogin());
-		developer.setPassword(developerDTO.getPassword());
+		developer.setPassword(encoder.encode(developerDTO.getPassword()));
 		developer.setDateOfBirth(developerDTO.getDateOfBirth());
 		developer.setFirstName(developerDTO.getFirstName());
 		developer.setLastName(developerDTO.getLastName());
@@ -159,7 +163,7 @@ public class DeveloperServiceImpl implements DeveloperService {
 	 */
 	public void changePassword(String id, String password) {
 		Developer developer = findOneByUuid(id, UuidType.CHANGE_PASSWORD);
-		developer.setPassword(password);
+		developer.setPassword(encoder.encode(password));
 		save(developer);
 		uuidService.delete(uuidService.findOneByUuid(id, UuidType.CHANGE_PASSWORD).getId());
 	}
