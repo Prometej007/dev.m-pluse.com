@@ -62,9 +62,5 @@ public class CompanyController {
 	public List<CompanyDTO> addCompany(){
 		return DtoUtilMapper.companyToCompanyDTO(companyService.findAll());
 	}
-	@RequestMapping(value="allCustomersWithCompany",method=RequestMethod.PUT)
-	public List<Customer> allCompany(@RequestBody String id){
-		
-		return customerService.getAllCustomerWithCompany(Integer.parseInt(id));
-	}
+
 }

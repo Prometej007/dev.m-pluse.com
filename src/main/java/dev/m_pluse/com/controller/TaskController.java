@@ -49,9 +49,7 @@ public class TaskController {
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public void add(@RequestBody List<TaskDTO> taskDto) {
 		for (TaskDTO obj : taskDto) {
-
 			taskService.createTaskList(obj.getTask(), obj.getProject());
-
 		}
 
 	}
@@ -64,11 +62,15 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.PUT)
-	public List<TaskDTO> update(@RequestParam("dev") List<Integer> dev, @RequestParam("task") String task,
+	public void update(@RequestParam("dev") List<Integer> dev, @RequestParam("task") String task,
 			@RequestParam("project") String project) {
 		taskService.addDeveloperInTaskList(task, dev, project);
 
-		return null;
+	}
+	@RequestMapping(value="load",method = RequestMethod.PUT)
+	public List<TaskDTO> load(@RequestBody String project){
+		
+		return DtoUtilMapper.taskToTaskDTO(taskService.fundAll(project));  
 	}
 
 }

@@ -66,9 +66,9 @@ public class CustomerCotroller {
 		return DtoUtilMapper.customerToCustomerDTO(customerService.findAll());
 	}
 	@RequestMapping(value = "loadWithCompany", method = RequestMethod.PUT)
-	public List<Customer> getAllCustomerWithCompany(@RequestParam("company") String company) {
+	public List<CustomerDTO> getAllCustomerWithCompany(@RequestParam("company") String company) {
 
-		return customerService.getAllCustomerWithCompany(Integer.parseInt(company));
+		return DtoUtilMapper.customerToCustomerDTO(customerService.getAllCustomerWithCompany(Integer.parseInt(company)));
 	}
 
 }
