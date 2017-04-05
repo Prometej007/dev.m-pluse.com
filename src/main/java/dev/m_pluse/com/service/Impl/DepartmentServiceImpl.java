@@ -46,10 +46,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 	 * @param email
 	 * @param develoupers
 	 */
-	public void createDepartment(String name, String email, List<Developer> develoupers) {
+	public void createDepartment(String name, String email) {
 		Department department = new Department();
 		department.setEmail(email);
-		department.setDeveloupers(develoupers);
 		department.setName(name);
 		save(department);
 	}
