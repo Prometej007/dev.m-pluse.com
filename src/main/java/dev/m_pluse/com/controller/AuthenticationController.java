@@ -1,0 +1,22 @@
+package dev.m_pluse.com.controller;
+
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+@RequestMapping("/restcontroller/authentication")
+public class AuthenticationController {
+
+	@RequestMapping(value = "/username", method = RequestMethod.GET)
+	public String currentUserName(HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		System.out.println("principal [ " + principal.getName() + " ] ");
+		return principal.getName();
+	}
+
+}
