@@ -15,7 +15,7 @@ public interface DepartmentService {
 
 	void delete(int id);
 
-	public void createDepartment(String name, String email, List<Developer> develoupers);
+	public void createDepartment(String name, String email);
 
 	public void changeDeveloperInNewDepartment(ChangeDeveloperInNewDepartmentDTO object);
 
