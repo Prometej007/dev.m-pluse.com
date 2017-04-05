@@ -36,6 +36,15 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectDao.findOne(id);
 	}
 
+	public Project findOneByName(String name) {
+		for (Project obj : findAll()) {
+			if (obj.getName().equals(name)) {
+				return obj;
+			}
+		}
+		return null;
+	}
+
 	public void delete(int id) {
 		projectDao.delete(id);
 
