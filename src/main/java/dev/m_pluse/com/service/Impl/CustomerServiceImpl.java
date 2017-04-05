@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import dev.m_pluse.com.dao.CompanyDao;
 import dev.m_pluse.com.dao.—ustomerDao;
 import dev.m_pluse.com.dto.CustomerDTO;
-import dev.m_pluse.com.dto.—ustomerRegistrationDTO;
+import dev.m_pluse.com.dto.CustomerRegistrationDTO;
 import dev.m_pluse.com.entity.Company;
 import dev.m_pluse.com.entity.Customer;
 import dev.m_pluse.com.entity.Resource;
@@ -45,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	
-	public void add—ustomer(—ustomerRegistrationDTO customerRegistration) {
+	public void add—ustomer(CustomerRegistrationDTO customerRegistration) {
 		Customer customer =new Customer();
 		customer.setFirstName(customerRegistration.getFirstName());
 		customer.setLastName(customerRegistration.getLastName());

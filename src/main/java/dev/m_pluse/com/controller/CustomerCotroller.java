@@ -1,9 +1,16 @@
 package dev.m_pluse.com.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.m_pluse.com.dto.CustomerDTO;
+import dev.m_pluse.com.dto.CustomerRegistrationDTO;
+import dev.m_pluse.com.dto.DtoUtilMapper;
 import dev.m_pluse.com.service.CompanyService;
 import dev.m_pluse.com.service.CustomerService;
 import dev.m_pluse.com.service.DepartmentService;
@@ -38,4 +45,23 @@ public class CustomerCotroller {
 	private TechnicalSpecificationService technicalSpecificationService;
 	@Autowired
 	private UuidService uuidService;
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public List<CustomerDTO> addCustomer(@RequestBody CustomerRegistrationDTO customerRegistration) {
+		customerService.add—ustomer(customerRegistration);
+		return DtoUtilMapper.customerToCustomerDTO(customerService.findAll());
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.DELETE)
+	public List<CustomerDTO> addCustomer(@RequestBody String id) {
+		customerService.delete(Integer.parseInt(id));
+		return DtoUtilMapper.customerToCustomerDTO(customerService.findAll());
+	}
+
+	@RequestMapping(value = "load", method = RequestMethod.PUT)
+	public List<CustomerDTO> addCustomer() {
+
+		return DtoUtilMapper.customerToCustomerDTO(customerService.findAll());
+	}
+
 }

@@ -38,4 +38,6 @@ public class DeveloperController {
 	private TechnicalSpecificationService technicalSpecificationService;
 	@Autowired
 	private UuidService uuidService;
+	
+	
 }
