@@ -41,6 +41,17 @@ public class TechnicalSpecificationServiceImpl implements TechnicalSpecification
 		specification.setFileSpecification(resource);
 		save(specification);
 
+		return findOneByPath(specification.getFileSpecification().getPath());
+	}
+
+	@Override
+	public TechnicalSpecification findOneByPath(String path) {
+		TechnicalSpecification specification = null;
+		for (TechnicalSpecification obj : findAll()) {
+			if (obj.getFileSpecification().getPath().equals(path)) {
+				specification = obj;
+			}
+		}
 		return specification;
 	}
 

@@ -18,6 +18,8 @@ public interface ProjectService {
 
 	void delete(int id);
 
+	public Project findOneByName(String name);
+
 	public void createProject(String name, Company company, Department department,
 			TechnicalSpecification technicalSpecification, LocalDate endDate);
 

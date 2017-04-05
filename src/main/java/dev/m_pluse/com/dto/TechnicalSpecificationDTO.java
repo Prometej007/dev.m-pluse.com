@@ -1,6 +1,7 @@
 package dev.m_pluse.com.dto;
 
 public class TechnicalSpecificationDTO {
+
 	private int id;
 
 	private String fileSpecification;

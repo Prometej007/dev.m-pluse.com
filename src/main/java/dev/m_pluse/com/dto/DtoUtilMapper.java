@@ -115,8 +115,9 @@ public class DtoUtilMapper {
 	}
 
 	public static TaskDTO taskToTaskDTO(Task task) {
+
 		return new TaskDTO(task.getId(), developerTOIndeterArray(task.getDevelopers()), task.getProject().getName(),
-				task.isInProces());
+				task.getTask(), task.isInProces());
 	}
 
 	public static List<TaskDTO> taskToTaskDTO(List<Task> task) {

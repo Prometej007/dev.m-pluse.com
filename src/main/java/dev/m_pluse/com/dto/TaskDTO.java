@@ -9,17 +9,20 @@ public class TaskDTO {
 
 	private String project;
 
+	private String task;
+
 	private boolean inProces;
 
 	public TaskDTO() {
 
 	}
 
-	public TaskDTO(int id, List<Integer> developers, String project, boolean inProces) {
+	public TaskDTO(int id, List<Integer> developers, String project, String task, boolean inProces) {
 		super();
 		this.id = id;
 		this.developers = developers;
 		this.project = project;
+		this.task = task;
 		this.inProces = inProces;
 	}
 
@@ -54,5 +57,14 @@ public class TaskDTO {
 	public void setInProces(boolean inProces) {
 		this.inProces = inProces;
 	}
+
+	public String getTask() {
+		return task;
+	}
+
+	public void setTask(String task) {
+		this.task = task;
+	}
+	
 
 }

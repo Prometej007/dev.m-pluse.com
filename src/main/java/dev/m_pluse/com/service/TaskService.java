@@ -2,8 +2,6 @@ package dev.m_pluse.com.service;
 
 import java.util.List;
 
-import dev.m_pluse.com.entity.Developer;
-import dev.m_pluse.com.entity.Project;
 import dev.m_pluse.com.entity.Task;
 
 public interface TaskService {
@@ -15,7 +13,9 @@ public interface TaskService {
 
 	void delete(int id);
 
-	public void createTaskList(Project project, Task task);
+	public Task findOneByTusk(String task, String nameProject);
 
-	public void addDeveloper(Task task, List<Developer> developers);
+	public void createTaskList(String nameProject, String task);
+
+	public void addDeveloperInTaskList(String task, List<Integer> developers, String projectName);
 }

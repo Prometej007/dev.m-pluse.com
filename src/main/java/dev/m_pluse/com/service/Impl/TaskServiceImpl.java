@@ -9,12 +9,18 @@ import dev.m_pluse.com.dao.TaskDao;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Project;
 import dev.m_pluse.com.entity.Task;
+import dev.m_pluse.com.service.DeveloperService;
+import dev.m_pluse.com.service.ProjectService;
 import dev.m_pluse.com.service.TaskService;
 
 @Service
 public class TaskServiceImpl implements TaskService {
 	@Autowired
 	private TaskDao taskDao;
+	@Autowired
+	private ProjectService projectService;
+	@Autowired
+	private DeveloperService developerService;
 
 	public void save(Task task) {
 		taskDao.save(task);
@@ -31,6 +37,16 @@ public class TaskServiceImpl implements TaskService {
 		return taskDao.findOne(id);
 	}
 
+	public Task findOneByTusk(String task, String nameProject) {
+		for (Task obj : findAll()) {
+			if (obj.getProject().getName().equals(nameProject) && obj.getTask().equals(task)) {
+				return obj;
+			}
+		}
+
+		return null;
+	}
+
 	public void delete(int id) {
 		taskDao.delete(id);
 
@@ -42,11 +58,14 @@ public class TaskServiceImpl implements TaskService {
 	 * @param task
 	 */
 
-	public void createTaskList(Project project, Task task) {
-		task.setProject(project);
-		task.setInProces(false);
+	public void createTaskList(String nameProject, String task) {
+		Project project = projectService.findOneByName(nameProject);
 
-		save(task);
+		Task obj = new Task(project);
+		obj.setTask(task);
+		obj.setInProces(false);
+
+		save(obj);
 	}
 
 	/**
@@ -54,17 +73,14 @@ public class TaskServiceImpl implements TaskService {
 	 * @param task
 	 * @param developers
 	 */
-	public void addDeveloper(Task task, List<Developer> developers) {
-		List<Developer> list = task.getDevelopers();
-		if (task.getDevelopers() != null) {
-			list.addAll(developers);
-		} else {
-			list = developers;
-
-			task.setDevelopers(list);
-
+	public void addDeveloperInTaskList(String task, List<Integer> developers, String projectName) {
+		Task objTask = findOneByTusk(task, projectName);
+		List<Developer> dev = objTask.getDevelopers();
+		for (Integer id : developers) {
+			dev.add(developerService.findOne(id));
 		}
-		save(task);
+		objTask.setDevelopers(dev);
+		save(objTask);
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import dev.m_pluse.com.constants.Configuration;
 import dev.m_pluse.com.dao.DepartmentDao;
 import dev.m_pluse.com.dao.DeveloperDao;
 import dev.m_pluse.com.dto.DeveloperRegistrationDTO;
@@ -124,6 +125,7 @@ public class DeveloperServiceImpl implements DeveloperService, UserDetailsServic
 	}
 
 	/**
+	 * метод для створення розробників і адміна
 	 * 
 	 * @param id
 	 * @param login
@@ -142,7 +144,7 @@ public class DeveloperServiceImpl implements DeveloperService, UserDetailsServic
 		developer.setLastName(developerDTO.getLastName());
 		developer.setDateOfEmployment(LocalDate.now());
 		developer.setEnabled(true);
-	
+
 		save(developer);
 		uuidService.delete(uuidService.findOneByUuid(developerDTO.getId(), UuidType.REGISTRATION_DEVELOPER).getId());
 	}
@@ -198,8 +200,24 @@ public class DeveloperServiceImpl implements DeveloperService, UserDetailsServic
 
 	@Override
 	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-		
+
 		return developerDao.findByName(name);
+	}
+
+	/**
+	 * create admin
+	 */
+	public void createFirstAdmin() {
+
+		Developer developer = new Developer();
+		developer.setEmail(Configuration.SITE_EMAIL_LOGIN);
+		developer.setPosition(Position.ROLE_ONE_OF_BOSS);
+		developer.setDepartment(departmentDao.findOne(null));
+		developer.setEnabled(false);
+		save(developer);
+		mailSenderService.inviteDeveloper(developer);
+		uuidService.createUuid(developer, UuidType.REGISTRATION_DEVELOPER);
+
 	}
 
 }

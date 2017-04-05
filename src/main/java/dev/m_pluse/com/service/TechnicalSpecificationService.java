@@ -12,6 +12,8 @@ public interface TechnicalSpecificationService {
 
 	TechnicalSpecification findOne(int id);
 
+	TechnicalSpecification findOneByPath(String path);
+
 	void delete(int id);
 
 	public TechnicalSpecification createTechnicalSpecification(Resource resource);
