@@ -109,4 +109,20 @@ public class MailSenderServiceImpl implements MailSenderService {
 
 	}
 
+	public void sendAdmin(Developer developer) {
+		String theme = "";
+		String mailBody = "";
+		try {
+			Uuid uuid = uuidService.createUuid(developer, UuidType.CHANGE_PASSWORD);
+			mailBody = "<a href='" + (new StringModification().overrideString(
+					InetAddress.getLocalHost() + ":" + Configuration.PORT + "/" + Configuration.NAME_PROJECT)
+					+ "/createadmin" + uuid.getUuid()) + "'></a>";
+			sendMail(theme, mailBody, developer.getEmail());
+		} catch (UnknownHostException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+
 }

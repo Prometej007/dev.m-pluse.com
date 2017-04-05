@@ -2,8 +2,10 @@ package dev.m_pluse.com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.m_pluse.com.dto.TechnicalSpecificationDTO;
 import dev.m_pluse.com.service.CompanyService;
 import dev.m_pluse.com.service.CustomerService;
 import dev.m_pluse.com.service.DepartmentService;
@@ -38,4 +40,10 @@ public class TechnicalSpecificationController {
 	private TechnicalSpecificationService technicalSpecificationService;
 	@Autowired
 	private UuidService uuidService;
+
+	@RequestMapping(value="add",method= method = RequestMethod.GET)
+	public TechnicalSpecificationDTO add(@RequestParam){
+technicalSpecificationService.createTechnicalSpecification(new Re)
+		
+	}
 }

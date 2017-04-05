@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dev.m_pluse.com.dao.TechnicalSpecificationDao;
+import dev.m_pluse.com.dto.ResourceDTO;
 import dev.m_pluse.com.entity.Resource;
 import dev.m_pluse.com.entity.TechnicalSpecification;
 import dev.m_pluse.com.service.TechnicalSpecificationService;
@@ -35,10 +36,10 @@ public class TechnicalSpecificationServiceImpl implements TechnicalSpecification
 
 	}
 
-	public TechnicalSpecification createTechnicalSpecification(Resource resource) {
+	public TechnicalSpecification createTechnicalSpecification(ResourceDTO resourceDTO) {
 
 		TechnicalSpecification specification = new TechnicalSpecification();
-		specification.setFileSpecification(resource);
+		specification.setFileSpecification(new Resource(resourceDTO.getName(), resourceDTO.getType(), path));
 		save(specification);
 
 		return specification;
