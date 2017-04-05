@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class DeveloperRegistrationDTO {
 
 	private String id;
-	private String login;
+	private String name;
 	private String password;
 	private LocalDate dateOfBirth;
 	private String firstName;
@@ -15,11 +15,11 @@ public class DeveloperRegistrationDTO {
 		super();
 	}
 
-	public DeveloperRegistrationDTO(String id, String login, String password, LocalDate dateOfBirth, String firstName,
+	public DeveloperRegistrationDTO(String id, String name, String password, LocalDate dateOfBirth, String firstName,
 			String lastName) {
 		super();
 		this.id = id;
-		this.login = login;
+		this.name = name;
 		this.password = password;
 		this.dateOfBirth = dateOfBirth;
 		this.firstName = firstName;
@@ -28,10 +28,6 @@ public class DeveloperRegistrationDTO {
 
 	public String getId() {
 		return id;
-	}
-
-	public String getLogin() {
-		return login;
 	}
 
 	public String getPassword() {
@@ -54,10 +50,6 @@ public class DeveloperRegistrationDTO {
 		this.id = id;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -73,6 +65,14 @@ public class DeveloperRegistrationDTO {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	@Override
 	public int hashCode() {
@@ -82,7 +82,7 @@ public class DeveloperRegistrationDTO {
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
@@ -116,10 +116,10 @@ public class DeveloperRegistrationDTO {
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
-		if (login == null) {
-			if (other.login != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!login.equals(other.login))
+		} else if (!name.equals(other.name))
 			return false;
 		if (password == null) {
 			if (other.password != null)

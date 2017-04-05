@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +23,8 @@ import dev.m_pluse.com.service.DeveloperService;
 import dev.m_pluse.com.service.MailSenderService;
 import dev.m_pluse.com.service.UuidService;
 
-@Service
-public class DeveloperServiceImpl implements DeveloperService {
+@Service("userDetailsService")
+public class DeveloperServiceImpl implements DeveloperService, UserDetailsService {
 
 	@Autowired
 	private DeveloperDao developerDao;
@@ -132,13 +135,14 @@ public class DeveloperServiceImpl implements DeveloperService {
 	public void registrationDeveloper(DeveloperRegistrationDTO developerDTO) {
 
 		Developer developer = findOneByUuid(developerDTO.getId(), UuidType.REGISTRATION_DEVELOPER);
-		developer.setLogin(developerDTO.getLogin());
+		developer.setName(developerDTO.getName());
 		developer.setPassword(encoder.encode(developerDTO.getPassword()));
 		developer.setDateOfBirth(developerDTO.getDateOfBirth());
 		developer.setFirstName(developerDTO.getFirstName());
 		developer.setLastName(developerDTO.getLastName());
 		developer.setDateOfEmployment(LocalDate.now());
 		developer.setEnabled(true);
+	
 		save(developer);
 		uuidService.delete(uuidService.findOneByUuid(developerDTO.getId(), UuidType.REGISTRATION_DEVELOPER).getId());
 	}
@@ -184,12 +188,18 @@ public class DeveloperServiceImpl implements DeveloperService {
 	@Override
 	public Developer findOneByLogin(String login) {
 		for (Developer developer : findAll()) {
-			if (developer.getLogin().equals(login)) {
+			if (developer.getName().equals(login)) {
 
 				return developer;
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
+		
+		return developerDao.findByName(name);
 	}
 
 }

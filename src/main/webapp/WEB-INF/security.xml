@@ -30,7 +30,7 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 		<security:user-service>
-		<security:user name="admin" password="admin" authorities="ROLE_MIDDLE"/>
+		<security:user name="admin" password="admin" authorities="ROLE_JUNIOR"/>
 		</security:user-service>
 		</security:authentication-provider>
 		<security:authentication-provider

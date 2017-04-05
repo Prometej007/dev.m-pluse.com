@@ -100,7 +100,7 @@ public class DtoUtilMapper {
 	}
 
 	public DeveloperDTO developerToDeveloperDTO(Developer developer) {
-		return new DeveloperDTO(developer.getId(), developer.getLogin(), developer.getPassword(), developer.getEmail(),
+		return new DeveloperDTO(developer.getId(), developer.getName(), developer.getPassword(), developer.getEmail(),
 				developer.getFirstName(), developer.getLastName(), developer.getDateOfBirth(),
 				developer.getDateOfEmployment(), developer.getDepartment().getName(), position(developer.getPosition()),
 				taskToTaskDTO(developer.getTask()), sessionToSessionDTO(developer.getSessions()));

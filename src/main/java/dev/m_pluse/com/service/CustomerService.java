@@ -2,7 +2,6 @@ package dev.m_pluse.com.service;
 
 import java.util.List;
 
-import dev.m_pluse.com.dto.CustomerDTO;
 import dev.m_pluse.com.dto.ÑustomerRegistrationDTO;
 import dev.m_pluse.com.entity.Customer;
 

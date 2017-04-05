@@ -43,7 +43,7 @@ public class TestController {
 	@RequestMapping("invite{id}")
 	public String invite(@PathVariable String id) {
 		developerService.registrationDeveloper(
-				new DeveloperRegistrationDTO(id, "1", "govno", LocalDate.now(), "krijan", "loh"));
+				new DeveloperRegistrationDTO(id, "2", "2", LocalDate.now(), "krijan", "loh"));
 		
 		System.out.println("govno+++++++++++++++++++++++++++++++++++++++++++++++++ [ " + id + " ] ");
 

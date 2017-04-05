@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,9 +25,10 @@ public class Developer implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String login;
+	private String name;
 	private String password;
 	private String email;
+	
 
 	private String firstName;
 	private String lastName;
@@ -35,6 +37,7 @@ public class Developer implements UserDetails {
 
 	@ManyToOne
 	private Department department;
+	@Enumerated
 	private Position position;
 	@ManyToMany
 	@JoinTable(name = "developer_task", joinColumns = @JoinColumn(name = "id_developer"), inverseJoinColumns = @JoinColumn(name = "id_task"))
@@ -48,10 +51,10 @@ public class Developer implements UserDetails {
 
 	}
 
-	public Developer(String login, String password, String firstName, String lastName, LocalDate dateOfBirth,
+	public Developer(String name, String password, String firstName, String lastName, LocalDate dateOfBirth,
 			LocalDate dateOfEmployment, Department department, Position position, String email) {
 		super();
-		this.login = login;
+		this.name = name;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -76,14 +79,6 @@ public class Developer implements UserDetails {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getPassword() {
@@ -161,6 +156,16 @@ public class Developer implements UserDetails {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	/**
 	 * UserDetails start
@@ -175,7 +180,7 @@ public class Developer implements UserDetails {
 	@Override
 	public String getUsername() {
 
-		return login;
+		return String.valueOf(id);
 	}
 
 	@Override
