@@ -66,4 +66,34 @@ public class SettingsServiceImpl implements SettingsService {
 		save(settings);
 	}
 
+	@Override
+	public void changeBackgroundImage(Developer developer, String backgroundImage, MultipartFile multipartFile) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void changeBackgroundColor(Developer developer, String backgroundColor) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void changeColor(Developer developer, String color) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void changeHref(Developer developer, String href) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void changeFontStyle(Developer developer, String fontStyle) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

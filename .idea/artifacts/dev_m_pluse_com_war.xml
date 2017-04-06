@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="dev.m-pluse.com:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="dev.m-pluse.com-0.0.1-SNAPSHOT.war">
-      <element id="artifact" artifact-name="dev.m-pluse.com:war exploded" />
-    </root>
-  </artifact>
-</component>

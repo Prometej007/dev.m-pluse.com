@@ -12,6 +12,7 @@ public class Settings {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String backgroundColor;
+	@OneToOne
 	private Resource avatar;
 	private String backgroundImage;
 	@OneToOne
