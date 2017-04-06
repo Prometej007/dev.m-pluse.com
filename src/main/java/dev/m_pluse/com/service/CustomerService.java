@@ -14,7 +14,7 @@ public interface CustomerService {
 
 	void delete(int id);
 
-	void add—ustomer(CustomerRegistrationDTO customerRegistration);
+	void addCustomer(CustomerRegistrationDTO customerRegistration);
 
 	List<Customer> getAllCustomerWithCompany(int company);
 

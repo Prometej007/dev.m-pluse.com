@@ -49,7 +49,7 @@ public class CustomerCotroller {
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public List<CustomerDTO> addCustomer(@RequestBody CustomerRegistrationDTO customerRegistration) {
-		customerService.add—ustomer(customerRegistration);
+		customerService.addCustomer(customerRegistration);
 		return DtoUtilMapper.customerToCustomerDTO(customerService.findAll());
 	}
 

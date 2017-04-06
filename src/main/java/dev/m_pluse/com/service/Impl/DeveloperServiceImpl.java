@@ -81,7 +81,7 @@ public class DeveloperServiceImpl implements DeveloperService, UserDetailsServic
 	/**
 	 * 
 	 * @param department
-	 * @return повертає всіх працівників відділу department
+	 * @return пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ department
 	 */
 	public List<Developer> allDeveloperOfTheDepartment(Department department) {
 		List<Developer> list = new ArrayList<Developer>();
@@ -136,7 +136,7 @@ public class DeveloperServiceImpl implements DeveloperService, UserDetailsServic
 	}
 
 	/**
-	 * метод для створення розробників і адміна
+	 * пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	 * 
 	 * @param id
 	 * @param login
@@ -163,7 +163,7 @@ public class DeveloperServiceImpl implements DeveloperService, UserDetailsServic
 	/**
 	 * 
 	 * @param email
-	 *            запита на зміну паролю
+	 *            пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	public void changePasswordSend(String email) {
 
