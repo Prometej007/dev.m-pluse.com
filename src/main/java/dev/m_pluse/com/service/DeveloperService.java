@@ -38,5 +38,7 @@ public interface DeveloperService {
 	public void changePasswordSend(String email);
 
 	public void createFirstAdmin();
+	
+	public List<String> positionToString();
 
 }

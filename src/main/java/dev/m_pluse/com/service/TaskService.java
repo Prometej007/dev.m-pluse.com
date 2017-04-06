@@ -18,4 +18,6 @@ public interface TaskService {
 	public void createTaskList(String nameProject, String task);
 
 	public void addDeveloperInTaskList(String task, List<Integer> developers, String projectName);
+	
+	List<Task> fundAll(String project);
 }

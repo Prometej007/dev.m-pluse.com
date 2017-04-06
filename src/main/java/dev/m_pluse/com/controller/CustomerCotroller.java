@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.m_pluse.com.dto.CustomerDTO;
@@ -62,6 +63,11 @@ public class CustomerCotroller {
 	public List<CustomerDTO> addCustomer() {
 
 		return DtoUtilMapper.customerToCustomerDTO(customerService.findAll());
+	}
+	@RequestMapping(value = "loadWithCompany", method = RequestMethod.PUT)
+	public List<CustomerDTO> getAllCustomerWithCompany(@RequestParam("company") String company) {
+
+		return DtoUtilMapper.customerToCustomerDTO(customerService.getAllCustomerWithCompany(Integer.parseInt(company)));
 	}
 
 }

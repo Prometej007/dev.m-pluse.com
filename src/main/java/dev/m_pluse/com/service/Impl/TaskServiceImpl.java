@@ -1,5 +1,6 @@
 package dev.m_pluse.com.service.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,11 @@ public class TaskServiceImpl implements TaskService {
 		}
 		objTask.setDevelopers(dev);
 		save(objTask);
+	}
+
+	public List<Task> fundAll(String project) {
+
+		return projectService.findOneByName(project).getTaskList();
 	}
 
 }

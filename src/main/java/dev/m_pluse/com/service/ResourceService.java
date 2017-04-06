@@ -34,5 +34,7 @@ public interface ResourceService {
 	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type,Project project);
 
 	public List<Resource> searchFileByResourceType(ResourceType resourceType);
+	
+	public List<String> resourceTypeToString();
 
 }

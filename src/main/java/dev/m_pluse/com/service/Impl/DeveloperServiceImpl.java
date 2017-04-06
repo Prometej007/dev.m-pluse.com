@@ -15,6 +15,7 @@ import dev.m_pluse.com.constants.Configuration;
 import dev.m_pluse.com.dao.DepartmentDao;
 import dev.m_pluse.com.dao.DeveloperDao;
 import dev.m_pluse.com.dto.DeveloperRegistrationDTO;
+import dev.m_pluse.com.dto.DtoUtilMapper;
 import dev.m_pluse.com.entity.Department;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Position;
@@ -123,6 +124,16 @@ public class DeveloperServiceImpl implements DeveloperService, UserDetailsServic
 		save(developer);
 		mailSenderService.inviteDeveloper(developer);
 	}
+	
+	
+	public List<String> positionToString(){
+		List<String> strings=new ArrayList<>();
+		for (Position position : Position.values()) {
+			strings.add(DtoUtilMapper.position(position));
+		}
+		
+		return strings;
+	}
 
 	/**
 	 * метод для створення розробників і адміна
@@ -208,15 +219,26 @@ public class DeveloperServiceImpl implements DeveloperService, UserDetailsServic
 	 * create admin
 	 */
 	public void createFirstAdmin() {
-
-		Developer developer = new Developer();
-		developer.setEmail(Configuration.SITE_EMAIL_LOGIN);
-		developer.setPosition(Position.ROLE_ONE_OF_BOSS);
-		developer.setDepartment(departmentDao.findOne(null));
-		developer.setEnabled(false);
-		save(developer);
-		mailSenderService.inviteDeveloper(developer);
-		uuidService.createUuid(developer, UuidType.REGISTRATION_DEVELOPER);
+		boolean check=true;
+		for (Developer developer : findAll()) {
+			if(check&& !developer.getPosition().equals(Position.ROLE_ONE_OF_BOSS)){
+				check=true;
+			}else{
+				check=false;
+			}
+			
+		}
+		if(check){
+			Developer developer = new Developer();
+			developer.setEmail(Configuration.SITE_EMAIL_LOGIN);
+			developer.setPosition(Position.ROLE_ONE_OF_BOSS);
+			developer.setDepartment(departmentDao.findOne(null));
+			developer.setEnabled(false);
+			save(developer);
+			mailSenderService.inviteDeveloper(developer);
+			uuidService.createUuid(developer, UuidType.REGISTRATION_DEVELOPER);
+		}
+		
 
 	}
 

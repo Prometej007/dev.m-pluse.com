@@ -1,3 +1,4 @@
+
 package dev.m_pluse.com.service.Impl;
 
 import java.io.File;
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dev.m_pluse.com.constants.Configuration;
 import dev.m_pluse.com.dao.ResourceDao;
+import dev.m_pluse.com.dto.DtoUtilMapper;
 import dev.m_pluse.com.entity.Project;
 import dev.m_pluse.com.entity.Resource;
 import dev.m_pluse.com.entity.ResourceType;
@@ -136,15 +138,15 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 			resource = new Resource(name, type,
 					new StringModification().overrideString(InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
-							+ Configuration.NAME_PROJECT + "/" + "resources/" + type.name() + "/" + name + "/" + uuid
-							+ "/" + multipartFile.getOriginalFilename()));
+							+ Configuration.NAME_PROJECT + "/" + "resources/" + name + "/" + uuid + "/"
+							+ multipartFile.getOriginalFilename()));
 		} catch (UnknownHostException e1) {
 
 			e1.printStackTrace();
 		}
 
 		save(resource);
-		String path = System.getProperty("catalina.home") + "/resources/" + type.name() + "/" + name + "/" + uuid + "/"
+		String path = System.getProperty("catalina.home") + "/resources/" + name + "/" + uuid + "/"
 				+ multipartFile.getOriginalFilename();
 
 		File file = new File(path);
@@ -177,16 +179,16 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 			resource = new Resource(name, type, project,
 					new StringModification().overrideString(InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
-							+ Configuration.NAME_PROJECT + "/" + "resources/" + project.getName() + "/" + type.name()
-							+ "/" + name + "/" + uuid + "/" + multipartFile.getOriginalFilename()));
+							+ Configuration.NAME_PROJECT + "/" + "resources/" + project.getName() + "/" + name + "/"
+							+ uuid + "/" + multipartFile.getOriginalFilename()));
 		} catch (UnknownHostException e1) {
 
 			e1.printStackTrace();
 		}
 
 		save(resource);
-		String path = System.getProperty("catalina.home") + "/resources/" + project.getName() + "/" + type.name() + "/"
-				+ name + "/" + uuid + "/" + multipartFile.getOriginalFilename();
+		String path = System.getProperty("catalina.home") + "/resources/" + project.getName() + "/" + name + "/" + uuid
+				+ "/" + multipartFile.getOriginalFilename();
 
 		File file = new File(path);
 
@@ -197,6 +199,17 @@ public class ResourceServiceImpl implements ResourceService {
 		} catch (IOException e) {
 			System.out.println("error with file");
 		}
+
+	}
+
+	public List<String> resourceTypeToString() {
+
+		List<String> strings = new ArrayList<>();
+		for (ResourceType resourceType : ResourceType.values()) {
+			strings.add(DtoUtilMapper.resourceType(resourceType));
+		}
+
+		return strings;
 
 	}
 
