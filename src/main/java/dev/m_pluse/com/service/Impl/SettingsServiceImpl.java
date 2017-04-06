@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import dev.m_pluse.com.dao.SettingsDao;
 import dev.m_pluse.com.entity.Developer;
@@ -11,13 +12,17 @@ import dev.m_pluse.com.entity.Resource;
 import dev.m_pluse.com.entity.ResourceType;
 import dev.m_pluse.com.entity.Settings;
 import dev.m_pluse.com.service.DeveloperService;
+import dev.m_pluse.com.service.ResourceService;
 import dev.m_pluse.com.service.SettingsService;
 
 @Service
 public class SettingsServiceImpl implements SettingsService {
 	@Autowired
 	private SettingsDao settingsDao;
+	@Autowired
 	private DeveloperService developerService;
+	@Autowired
+	private ResourceService resourceService;
 
 	public void save(Settings settings) {
 		settingsDao.save(settings);
@@ -52,9 +57,13 @@ public class SettingsServiceImpl implements SettingsService {
 		save(settings);
 	}
 
-	public void changeAvater(Developer developer, String avatar) {
+	public void changeAvater(Developer developer, String avatar, MultipartFile multipart) {
 		Settings settings = findOneByDeveloper(developer);
-		settings.setAvatar(new Resource(developer.getName(), ResourceType.DEVELOPER_AVATAR, path));
+		Resource resource = resourceService.addFileResourceAvatar(multipart, developer.getName(),
+				ResourceType.DEVELOPER_AVATAR);
+
+		settings.setAvatar(resource);
+		save(settings);
 	}
 
 }

@@ -158,7 +158,46 @@ public class ResourceServiceImpl implements ResourceService {
 		} catch (IOException e) {
 			System.out.println("error with file");
 		}
+		if (resource != null) {
 
+			save(resource);
+		}
+
+	}
+
+	public Resource addFileResourceAvatar(MultipartFile multipartFile, String name, ResourceType type) {
+		Resource resource = null;
+
+		String uuid = UUID.randomUUID().toString();
+
+		try {
+			resource = new Resource(name, type,
+					new StringModification().overrideString(InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
+							+ Configuration.NAME_PROJECT + "/" + "resources/avatar/" + type.name() + "/" + name + "/"
+							+ uuid + "/" + multipartFile.getOriginalFilename()));
+		} catch (UnknownHostException e1) {
+
+			e1.printStackTrace();
+		}
+
+		save(resource);
+		String path = System.getProperty("catalina.home") + "/resources/" + name + "/" + uuid + "/"
+				+ multipartFile.getOriginalFilename();
+
+		File file = new File(path);
+
+		try {
+			file.mkdirs();
+
+			multipartFile.transferTo(file);
+		} catch (IOException e) {
+			System.out.println("error with file");
+		}
+		if (resource != null) {
+
+			save(resource);
+		}
+		return resource;
 	}
 
 	public List<Resource> searchFileByResourceType(ResourceType resourceType) {
@@ -198,6 +237,10 @@ public class ResourceServiceImpl implements ResourceService {
 			multipartFile.transferTo(file);
 		} catch (IOException e) {
 			System.out.println("error with file");
+		}
+		if (resource != null) {
+
+			save(resource);
 		}
 
 	}

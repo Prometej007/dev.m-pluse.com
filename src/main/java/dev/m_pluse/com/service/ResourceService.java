@@ -28,13 +28,15 @@ public interface ResourceService {
 	public List<Resource> selectAllDevResourceImg();
 
 	public List<Resource> selectAllProjectResourceImg();
-	
+
 	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type);
-	
-	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type,Project project);
+
+	public void addFileResource(MultipartFile multipartFile, String name, ResourceType type, Project project);
+
+	public Resource addFileResourceAvatar(MultipartFile multipartFile, String name, ResourceType type);
 
 	public List<Resource> searchFileByResourceType(ResourceType resourceType);
-	
+
 	public List<String> resourceTypeToString();
 
 }
