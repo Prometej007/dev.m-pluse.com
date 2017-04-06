@@ -138,8 +138,8 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 			resource = new Resource(name, type,
 					new StringModification().overrideString(InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
-							+ Configuration.NAME_PROJECT + "/" + "resources/" + name + "/" + uuid + "/"
-							+ multipartFile.getOriginalFilename()));
+							+ Configuration.NAME_PROJECT + "/" + "resources/all/" + type.name() + "/" + name + "/"
+							+ uuid + "/" + multipartFile.getOriginalFilename()));
 		} catch (UnknownHostException e1) {
 
 			e1.printStackTrace();
@@ -179,8 +179,8 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 			resource = new Resource(name, type, project,
 					new StringModification().overrideString(InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
-							+ Configuration.NAME_PROJECT + "/" + "resources/" + project.getName() + "/" + name + "/"
-							+ uuid + "/" + multipartFile.getOriginalFilename()));
+							+ Configuration.NAME_PROJECT + "/" + "resources/" + project.getName() + "/" + type.name()
+							+ "/" + name + "/" + uuid + "/" + multipartFile.getOriginalFilename()));
 		} catch (UnknownHostException e1) {
 
 			e1.printStackTrace();
