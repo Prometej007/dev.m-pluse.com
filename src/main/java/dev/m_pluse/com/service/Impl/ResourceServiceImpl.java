@@ -1,3 +1,4 @@
+
 package dev.m_pluse.com.service.Impl;
 
 import java.io.File;
@@ -15,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import dev.m_pluse.com.constants.Configuration;
 import dev.m_pluse.com.dao.ResourceDao;
 import dev.m_pluse.com.dto.DtoUtilMapper;
-import dev.m_pluse.com.entity.Position;
 import dev.m_pluse.com.entity.Project;
 import dev.m_pluse.com.entity.Resource;
 import dev.m_pluse.com.entity.ResourceType;
@@ -138,8 +138,8 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 			resource = new Resource(name, type,
 					new StringModification().overrideString(InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
-							+ Configuration.NAME_PROJECT + "/" + "resources/" + name + "/" + uuid + "/"
-							+ multipartFile.getOriginalFilename()));
+							+ Configuration.NAME_PROJECT + "/" + "resources/all/" + type.name() + "/" + name + "/"
+							+ uuid + "/" + multipartFile.getOriginalFilename()));
 		} catch (UnknownHostException e1) {
 
 			e1.printStackTrace();
@@ -158,7 +158,46 @@ public class ResourceServiceImpl implements ResourceService {
 		} catch (IOException e) {
 			System.out.println("error with file");
 		}
+		if (resource != null) {
 
+			save(resource);
+		}
+
+	}
+
+	public Resource addFileResourceAvatar(MultipartFile multipartFile, String name, ResourceType type) {
+		Resource resource = null;
+
+		String uuid = UUID.randomUUID().toString();
+
+		try {
+			resource = new Resource(name, type,
+					new StringModification().overrideString(InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
+							+ Configuration.NAME_PROJECT + "/" + "resources/avatar/" + type.name() + "/" + name + "/"
+							+ uuid + "/" + multipartFile.getOriginalFilename()));
+		} catch (UnknownHostException e1) {
+
+			e1.printStackTrace();
+		}
+
+		save(resource);
+		String path = System.getProperty("catalina.home") + "/resources/" + name + "/" + uuid + "/"
+				+ multipartFile.getOriginalFilename();
+
+		File file = new File(path);
+
+		try {
+			file.mkdirs();
+
+			multipartFile.transferTo(file);
+		} catch (IOException e) {
+			System.out.println("error with file");
+		}
+		if (resource != null) {
+
+			save(resource);
+		}
+		return resource;
 	}
 
 	public List<Resource> searchFileByResourceType(ResourceType resourceType) {
@@ -179,8 +218,8 @@ public class ResourceServiceImpl implements ResourceService {
 		try {
 			resource = new Resource(name, type, project,
 					new StringModification().overrideString(InetAddress.getLocalHost() + ":" + Configuration.PORT + "/"
-							+ Configuration.NAME_PROJECT + "/" + "resources/" + project.getName() + "/" + name + "/"
-							+ uuid + "/" + multipartFile.getOriginalFilename()));
+							+ Configuration.NAME_PROJECT + "/" + "resources/" + project.getName() + "/" + type.name()
+							+ "/" + name + "/" + uuid + "/" + multipartFile.getOriginalFilename()));
 		} catch (UnknownHostException e1) {
 
 			e1.printStackTrace();
@@ -198,6 +237,10 @@ public class ResourceServiceImpl implements ResourceService {
 			multipartFile.transferTo(file);
 		} catch (IOException e) {
 			System.out.println("error with file");
+		}
+		if (resource != null) {
+
+			save(resource);
 		}
 
 	}

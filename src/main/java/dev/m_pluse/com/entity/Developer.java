@@ -28,7 +28,6 @@ public class Developer implements UserDetails {
 	private String name;
 	private String password;
 	private String email;
-	
 
 	private String firstName;
 	private String lastName;
@@ -156,8 +155,6 @@ public class Developer implements UserDetails {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
-	
 
 	public String getName() {
 		return name;
