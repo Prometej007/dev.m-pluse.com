@@ -1,9 +1,5 @@
 package dev.m_pluse.com.constants;
 
-import java.net.InetAddress;
-
-import dev.m_pluse.resource.wrapper.StringModification;
-
 public class Configuration {
 
 	public static String SITE_EMAIL_LOGIN = "anazariks@gmail.com";
@@ -13,7 +9,12 @@ public class Configuration {
 	public static String PORT = "8080";
 	public static String NAME_PROJECT = "dev.m-pluse.com";
 
-	// href mail body
-
+	// base developer settings
+	public static String DEVELOPER_BACKGROUNDCOLOR;
+	public static String DEVELOPER_AVATAT;
+	public static String DEVELOPER_BACKGROUNDIMAGE;
+	public static String DEVELOPER_COLOR;
+	public static String DEVELOPER_HREF;
+	public static String DEVELOPER_FONTSTYLE;
 
 }

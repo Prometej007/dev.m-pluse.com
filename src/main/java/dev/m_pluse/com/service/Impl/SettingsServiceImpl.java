@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import dev.m_pluse.com.constants.Configuration;
 import dev.m_pluse.com.dao.SettingsDao;
 import dev.m_pluse.com.entity.Developer;
 import dev.m_pluse.com.entity.Resource;
@@ -69,31 +70,44 @@ public class SettingsServiceImpl implements SettingsService {
 	@Override
 	public void changeBackgroundImage(Developer developer, String backgroundImage, MultipartFile multipartFile) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void changeBackgroundColor(Developer developer, String backgroundColor) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void changeColor(Developer developer, String color) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void changeHref(Developer developer, String href) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void changeFontStyle(Developer developer, String fontStyle) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void createSettings(Developer developer) {
+		Settings settings = new Settings();
+		settings.setAvatar(
+				new Resource(developer.getName(), ResourceType.DEVELOPER_AVATAR, Configuration.DEVELOPER_AVATAT));
+		settings.setBackgroundColor(Configuration.DEVELOPER_BACKGROUNDCOLOR);
+		settings.setBackgroundImage(Configuration.DEVELOPER_BACKGROUNDIMAGE);
+		settings.setColor(Configuration.DEVELOPER_COLOR);
+		settings.setDeveloper(developer);
+		settings.setHref(Configuration.DEVELOPER_HREF);
+
 	}
 
 }

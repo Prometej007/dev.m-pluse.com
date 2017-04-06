@@ -30,4 +30,6 @@ public interface SettingsService {
 
 	public void changeFontStyle(Developer developer, String fontStyle);
 
+	public void createSettings(Developer developer);
+
 }
